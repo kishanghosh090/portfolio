@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, MessageSquare, User } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
 import { portfolioData } from '../data/mock';
 import { useToast } from '../hooks/use-toast';
 import { motion, useInView } from 'framer-motion';
@@ -16,7 +16,7 @@ const Contact = () => {
   const headerRef = useRef(null);
   const formRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true });
-  const isFormInView = useInView(formRef, { once: true, margin: "-100px" });
+  const isFormInView = useInView(formRef, { once: true, amount: 0.3 });
 
   const handleChange = (e) => {
     setFormData({
@@ -73,9 +73,9 @@ const Contact = () => {
       <div className="max-w-5xl mx-auto">
         <motion.div
           ref={headerRef}
-          initial={{ opacity: 0, y: -20 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: -10 }}
+          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
@@ -89,9 +89,9 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" ref={formRef}>
           {/* Contact Information */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.4 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             className="space-y-4"
           >
             <div className="bg-[#0f0f0f] rounded-2xl p-6 border border-gray-900">
@@ -101,11 +101,8 @@ const Contact = () => {
                 {contactInfo.map((info, index) => {
                   const Icon = info.icon;
                   return (
-                    <motion.div
+                    <div
                       key={index}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
                       className="flex items-start space-x-3"
                     >
                       <div className="bg-white p-2 rounded-lg flex-shrink-0">
@@ -116,7 +113,7 @@ const Contact = () => {
                         {info.href ? (
                           <a
                             href={info.href}
-                            className="text-white hover:text-gray-300 transition-colors text-sm"
+                            className="text-white hover:text-gray-300 transition-colors duration-150 text-sm"
                           >
                             {info.value}
                           </a>
@@ -124,7 +121,7 @@ const Contact = () => {
                           <p className="text-white text-sm">{info.value}</p>
                         )}
                       </div>
-                    </motion.div>
+                    </div>
                   );
                 })}
               </div>
@@ -135,18 +132,16 @@ const Contact = () => {
                   {socialLinks.map((social, index) => {
                     const Icon = social.icon;
                     return (
-                      <motion.a
+                      <a
                         key={index}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-[#1a1a1a] p-2.5 rounded-lg hover:bg-[#252525] transition-all duration-300 border border-gray-800"
+                        className="bg-[#1a1a1a] p-2.5 rounded-lg hover:bg-[#252525] transition-colors duration-150 border border-gray-800"
                         aria-label={social.label}
                       >
                         <Icon size={18} className="text-white" />
-                      </motion.a>
+                      </a>
                     );
                   })}
                 </div>
@@ -156,9 +151,9 @@ const Contact = () => {
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.3, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
           >
             <form onSubmit={handleSubmit} className="bg-[#0f0f0f] rounded-2xl p-6 border border-gray-900">
               <div className="space-y-4">
@@ -173,7 +168,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2.5 bg-[#1a1a1a] border border-gray-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white transition-all text-white placeholder-gray-600 text-sm"
+                    className="w-full px-4 py-2.5 bg-[#1a1a1a] border border-gray-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white transition-all duration-150 text-white placeholder-gray-600 text-sm"
                     placeholder="John Doe"
                   />
                 </div>
@@ -189,7 +184,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2.5 bg-[#1a1a1a] border border-gray-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white transition-all text-white placeholder-gray-600 text-sm"
+                    className="w-full px-4 py-2.5 bg-[#1a1a1a] border border-gray-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white transition-all duration-150 text-white placeholder-gray-600 text-sm"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -205,20 +200,18 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows="5"
-                    className="w-full px-4 py-2.5 bg-[#1a1a1a] border border-gray-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white transition-all resize-none text-white placeholder-gray-600 text-sm"
+                    className="w-full px-4 py-2.5 bg-[#1a1a1a] border border-gray-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white transition-all duration-150 resize-none text-white placeholder-gray-600 text-sm"
                     placeholder="Tell me about your project..."
                   ></textarea>
                 </div>
 
-                <motion.button
+                <button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full bg-white text-black font-semibold py-2.5 px-6 rounded-xl hover:bg-gray-200 transition-all duration-300 flex items-center justify-center space-x-2 text-sm"
+                  className="w-full bg-white text-black font-semibold py-2.5 px-6 rounded-xl hover:bg-gray-200 transition-colors duration-150 flex items-center justify-center space-x-2 text-sm"
                 >
                   <span>Send Message</span>
                   <Send size={16} />
-                </motion.button>
+                </button>
               </div>
             </form>
           </motion.div>
@@ -229,7 +222,7 @@ const Contact = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
           className="mt-16 pt-8 border-t border-gray-900 text-center"
         >
           <p className="text-gray-500 text-sm">

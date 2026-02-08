@@ -11,18 +11,18 @@ const Hero = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 10 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' }
+      transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
     }
   };
 
@@ -65,38 +65,30 @@ const Hero = () => {
           variants={itemVariants}
           className="flex flex-wrap items-center justify-center gap-3 mb-6"
         >
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <a
             href={personal.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center space-x-2 px-5 py-2.5 bg-white text-black rounded-full hover:bg-gray-200 transition-all duration-300 text-sm font-medium"
+            className="flex items-center space-x-2 px-5 py-2.5 bg-white text-black rounded-full hover:bg-gray-200 transition-colors duration-200 text-sm font-medium"
           >
             <Github size={18} />
             <span>GitHub</span>
-          </motion.a>
+          </a>
           
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <a
             href={personal.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center space-x-2 px-5 py-2.5 bg-[#1a1a1a] text-white rounded-full hover:bg-[#2a2a2a] transition-all duration-300 text-sm font-medium border border-gray-800"
+            className="flex items-center space-x-2 px-5 py-2.5 bg-[#1a1a1a] text-white rounded-full hover:bg-[#2a2a2a] transition-colors duration-200 text-sm font-medium border border-gray-800"
           >
             <Linkedin size={18} />
             <span>LinkedIn</span>
-          </motion.a>
+          </a>
           
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center space-x-2 px-5 py-2.5 bg-transparent text-white border border-gray-700 rounded-full hover:bg-[#1a1a1a] transition-all duration-300 text-sm font-medium"
-          >
+          <button className="flex items-center space-x-2 px-5 py-2.5 bg-transparent text-white border border-gray-700 rounded-full hover:bg-[#1a1a1a] transition-colors duration-200 text-sm font-medium">
             <Download size={18} />
             <span>Resume</span>
-          </motion.button>
+          </button>
         </motion.div>
         
         <motion.div

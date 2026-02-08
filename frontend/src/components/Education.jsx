@@ -5,15 +5,15 @@ import { motion, useInView } from 'framer-motion';
 
 const ExperienceCard = ({ exp, index }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.4, delay: index * 0.08 }}
-      className="bg-[#0f0f0f] rounded-2xl p-5 border border-gray-900 hover:border-gray-800 hover:bg-[#1a1a1a] transition-all duration-300"
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+      className="bg-[#0f0f0f] rounded-2xl p-5 border border-gray-900 hover:border-gray-800 hover:bg-[#1a1a1a] transition-all duration-200 animate-card"
     >
       <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
         <div className="flex items-start space-x-3">
@@ -36,16 +36,13 @@ const ExperienceCard = ({ exp, index }) => {
       <p className="text-gray-400 mb-3 text-sm">{exp.description}</p>
       <ul className="space-y-2">
         {exp.achievements.map((achievement, achIndex) => (
-          <motion.li
+          <li
             key={achIndex}
-            initial={{ opacity: 0, x: -10 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
-            transition={{ duration: 0.3, delay: index * 0.08 + achIndex * 0.05 }}
             className="flex items-start space-x-2 text-xs text-gray-400"
           >
             <CheckCircle size={14} className="text-white mt-0.5 flex-shrink-0" />
             <span>{achievement}</span>
-          </motion.li>
+          </li>
         ))}
       </ul>
     </motion.div>
@@ -54,15 +51,15 @@ const ExperienceCard = ({ exp, index }) => {
 
 const EducationCard = ({ edu, index }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.4, delay: index * 0.08 }}
-      className="bg-[#0f0f0f] rounded-2xl p-5 border border-gray-900 hover:border-gray-800 hover:bg-[#1a1a1a] transition-all duration-300"
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+      className="bg-[#0f0f0f] rounded-2xl p-5 border border-gray-900 hover:border-gray-800 hover:bg-[#1a1a1a] transition-all duration-200 animate-card"
     >
       <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
         <div className="flex items-start space-x-3">
@@ -87,16 +84,13 @@ const EducationCard = ({ edu, index }) => {
       )}
       <ul className="space-y-2">
         {edu.highlights.map((highlight, hlIndex) => (
-          <motion.li
+          <li
             key={hlIndex}
-            initial={{ opacity: 0, x: -10 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
-            transition={{ duration: 0.3, delay: index * 0.08 + hlIndex * 0.05 }}
             className="flex items-start space-x-2 text-xs text-gray-400"
           >
             <CheckCircle size={14} className="text-white mt-0.5 flex-shrink-0" />
             <span>{highlight}</span>
-          </motion.li>
+          </li>
         ))}
       </ul>
     </motion.div>
@@ -105,15 +99,15 @@ const EducationCard = ({ edu, index }) => {
 
 const CertificationCard = ({ cert, index }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.4, delay: index * 0.08 }}
-      className="bg-[#0f0f0f] rounded-2xl p-5 border border-gray-900 hover:border-gray-800 hover:bg-[#1a1a1a] transition-all duration-300"
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+      className="bg-[#0f0f0f] rounded-2xl p-5 border border-gray-900 hover:border-gray-800 hover:bg-[#1a1a1a] transition-all duration-200 animate-card"
     >
       <div className="flex items-start space-x-3">
         <div className="bg-white p-2 rounded-lg flex-shrink-0">
@@ -142,9 +136,9 @@ const Education = () => {
       <div className="max-w-5xl mx-auto">
         <motion.div
           ref={headerRef}
-          initial={{ opacity: 0, y: -20 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: -10 }}
+          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">

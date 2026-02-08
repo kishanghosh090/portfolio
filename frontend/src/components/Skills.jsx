@@ -7,7 +7,7 @@ import { useRef } from 'react';
 
 const SkillCard = ({ skillGroup, index }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   const iconMap = {
     'Languages': Code2,
@@ -23,10 +23,10 @@ const SkillCard = ({ skillGroup, index }) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.4, delay: index * 0.08 }}
-      className="bg-[#0f0f0f] rounded-2xl p-5 hover:bg-[#1a1a1a] transition-all duration-300 border border-gray-900"
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+      className="bg-[#0f0f0f] rounded-2xl p-5 hover:bg-[#1a1a1a] transition-colors duration-200 border border-gray-900 animate-card"
     >
       <div className="flex items-center space-x-3 mb-4">
         <div className="bg-white p-2 rounded-lg">
@@ -38,16 +38,12 @@ const SkillCard = ({ skillGroup, index }) => {
       </div>
       <div className="flex flex-wrap gap-2">
         {skillGroup.items.map((skill, skillIndex) => (
-          <motion.span
+          <span
             key={skillIndex}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3, delay: index * 0.08 + skillIndex * 0.03 }}
-            whileHover={{ scale: 1.05 }}
-            className="px-3 py-1.5 bg-[#1a1a1a] text-gray-300 rounded-lg text-xs font-medium hover:bg-[#252525] transition-all duration-200 cursor-pointer border border-gray-800"
+            className="px-3 py-1.5 bg-[#1a1a1a] text-gray-300 rounded-lg text-xs font-medium hover:bg-[#252525] transition-colors duration-150 cursor-pointer border border-gray-800"
           >
             {skill}
-          </motion.span>
+          </span>
         ))}
       </div>
     </motion.div>
@@ -56,16 +52,15 @@ const SkillCard = ({ skillGroup, index }) => {
 
 const ProjectCard = ({ project, index }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.4, delay: index * 0.08 }}
-      whileHover={{ y: -3 }}
-      className="bg-[#0f0f0f] rounded-2xl p-5 border border-gray-900 hover:border-gray-800 hover:bg-[#1a1a1a] transition-all duration-300"
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+      className="bg-[#0f0f0f] rounded-2xl p-5 border border-gray-900 hover:border-gray-800 hover:bg-[#1a1a1a] transition-all duration-200 animate-card"
     >
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center space-x-2">
@@ -112,9 +107,9 @@ const Skills = () => {
       <div className="max-w-5xl mx-auto">
         <motion.div
           ref={headerRef}
-          initial={{ opacity: 0, y: -20 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: -10 }}
+          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
@@ -134,8 +129,8 @@ const Skills = () => {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.3 }}
           className="mt-12"
         >
           <h3 className="text-2xl font-bold text-white mb-6 text-center">

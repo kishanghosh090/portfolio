@@ -44,7 +44,7 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, delay: 0.5 }}
+      transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
       className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50"
     >
       <div className="bg-[#1a1a1a] backdrop-blur-xl border border-gray-800 rounded-full shadow-2xl px-4 py-2">
@@ -54,11 +54,9 @@ const Navbar = () => {
             const isActive = activeSection === item.id;
             return (
               <li key={item.id}>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button
                   onClick={() => scrollToSection(item.id)}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 ${
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-200 ease-out ${
                     isActive
                       ? 'bg-white text-black'
                       : 'text-gray-400 hover:bg-gray-800 hover:text-white'
@@ -66,7 +64,7 @@ const Navbar = () => {
                 >
                   <Icon size={18} />
                   <span className="text-sm font-medium hidden md:inline">{item.label}</span>
-                </motion.button>
+                </button>
               </li>
             );
           })}

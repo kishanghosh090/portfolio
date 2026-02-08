@@ -84,3 +84,13 @@ code {
 html {
   scroll-behavior: smooth;
 }
+
+/* Performance optimization */
+.animate-card {
+  will-change: transform, opacity;
+}
+
+.animate-card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
