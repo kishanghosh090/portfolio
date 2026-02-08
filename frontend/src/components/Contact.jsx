@@ -39,22 +39,19 @@ const Contact = () => {
       icon: Mail,
       label: 'Email',
       value: personal.email,
-      href: `mailto:${personal.email}`,
-      color: 'from-purple-600 to-purple-500'
+      href: `mailto:${personal.email}`
     },
     {
       icon: Phone,
       label: 'Phone',
       value: personal.phone,
-      href: `tel:${personal.phone}`,
-      color: 'from-purple-600 to-purple-500'
+      href: `tel:${personal.phone}`
     },
     {
       icon: MapPin,
       label: 'Location',
       value: personal.location,
-      href: null,
-      color: 'from-purple-600 to-purple-500'
+      href: null
     }
   ];
 
@@ -62,56 +59,43 @@ const Contact = () => {
     {
       icon: Github,
       href: personal.github,
-      label: 'GitHub',
-      color: 'hover:bg-gray-700'
+      label: 'GitHub'
     },
     {
       icon: Linkedin,
       href: personal.linkedin,
-      label: 'LinkedIn',
-      color: 'hover:bg-purple-600'
+      label: 'LinkedIn'
     }
   ];
 
   return (
-    <section id="contact" className="min-h-screen bg-black py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section id="contact" className="min-h-screen bg-black py-16 px-4">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           ref={headerRef}
-          initial={{ opacity: 0, y: -30 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: -20 }}
+          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
         >
-          <div className="flex items-center justify-center mb-4">
-            <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <MessageSquare size={40} className="text-purple-500" />
-            </motion.div>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
             Get In Touch
           </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+          <p className="text-base text-gray-500 max-w-2xl mx-auto">
             Have a project in mind or want to collaborate? Feel free to reach out!
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12" ref={formRef}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" ref={formRef}>
           {/* Contact Information */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.4 }}
+            className="space-y-4"
           >
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-8 border border-purple-500/30 glow-purple">
-              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                <Mail className="text-purple-400" />
-                Contact Information
-              </h3>
+            <div className="bg-[#0f0f0f] rounded-2xl p-6 border border-gray-900">
+              <h3 className="text-xl font-bold text-white mb-5">Contact Information</h3>
               
               <div className="space-y-4">
                 {contactInfo.map((info, index) => {
@@ -119,26 +103,25 @@ const Contact = () => {
                   return (
                     <motion.div
                       key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      whileHover={{ x: 5 }}
-                      className="flex items-start space-x-4"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      className="flex items-start space-x-3"
                     >
-                      <div className={`bg-gradient-to-br ${info.color} p-3 rounded-lg glow-purple flex-shrink-0`}>
-                        <Icon size={20} className="text-white" />
+                      <div className="bg-white p-2 rounded-lg flex-shrink-0">
+                        <Icon size={16} className="text-black" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-400 font-medium">{info.label}</p>
+                        <p className="text-xs text-gray-500 font-medium">{info.label}</p>
                         {info.href ? (
                           <a
                             href={info.href}
-                            className="text-white hover:text-purple-400 transition-colors"
+                            className="text-white hover:text-gray-300 transition-colors text-sm"
                           >
                             {info.value}
                           </a>
                         ) : (
-                          <p className="text-white">{info.value}</p>
+                          <p className="text-white text-sm">{info.value}</p>
                         )}
                       </div>
                     </motion.div>
@@ -146,26 +129,23 @@ const Contact = () => {
                 })}
               </div>
 
-              <div className="mt-8 pt-8 border-t border-purple-500/30">
-                <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                  <Github size={20} className="text-purple-400" />
-                  Follow Me
-                </h4>
-                <div className="flex space-x-4">
+              <div className="mt-6 pt-6 border-t border-gray-900">
+                <h4 className="text-base font-semibold text-white mb-3">Follow Me</h4>
+                <div className="flex space-x-3">
                   {socialLinks.map((social, index) => {
                     const Icon = social.icon;
                     return (
                       <motion.a
                         key={index}
-                        whileHover={{ scale: 1.1, y: -5 }}
+                        whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`bg-gray-800 p-3 rounded-lg ${social.color} transition-all duration-300 border border-purple-500/30 glow-purple`}
+                        className="bg-[#1a1a1a] p-2.5 rounded-lg hover:bg-[#252525] transition-all duration-300 border border-gray-800"
                         aria-label={social.label}
                       >
-                        <Icon size={20} className="text-white" />
+                        <Icon size={18} className="text-white" />
                       </motion.a>
                     );
                   })}
@@ -176,19 +156,14 @@ const Contact = () => {
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
           >
-            <form onSubmit={handleSubmit} className="bg-gradient-to-br from-gray-900 to-purple-900/20 rounded-xl p-8 border border-purple-500/30 glow-purple">
-              <div className="space-y-6">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.4, delay: 0.2 }}
-                >
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
-                    <User size={16} className="text-purple-400" />
+            <form onSubmit={handleSubmit} className="bg-[#0f0f0f] rounded-2xl p-6 border border-gray-900">
+              <div className="space-y-4">
+                <div>
+                  <label htmlFor="name" className="block text-xs font-medium text-gray-400 mb-2">
                     Your Name
                   </label>
                   <input
@@ -198,18 +173,13 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-gray-800 border border-purple-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-white placeholder-gray-500"
+                    className="w-full px-4 py-2.5 bg-[#1a1a1a] border border-gray-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white transition-all text-white placeholder-gray-600 text-sm"
                     placeholder="John Doe"
                   />
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.4, delay: 0.3 }}
-                >
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
-                    <Mail size={16} className="text-purple-400" />
+                <div>
+                  <label htmlFor="email" className="block text-xs font-medium text-gray-400 mb-2">
                     Your Email
                   </label>
                   <input
@@ -219,18 +189,13 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-gray-800 border border-purple-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-white placeholder-gray-500"
+                    className="w-full px-4 py-2.5 bg-[#1a1a1a] border border-gray-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white transition-all text-white placeholder-gray-600 text-sm"
                     placeholder="john@example.com"
                   />
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.4, delay: 0.4 }}
-                >
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
-                    <MessageSquare size={16} className="text-purple-400" />
+                <div>
+                  <label htmlFor="message" className="block text-xs font-medium text-gray-400 mb-2">
                     Your Message
                   </label>
                   <textarea
@@ -239,23 +204,20 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows="6"
-                    className="w-full px-4 py-3 bg-gray-800 border border-purple-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none text-white placeholder-gray-500"
+                    rows="5"
+                    className="w-full px-4 py-2.5 bg-[#1a1a1a] border border-gray-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white transition-all resize-none text-white placeholder-gray-600 text-sm"
                     placeholder="Tell me about your project..."
                   ></textarea>
-                </motion.div>
+                </div>
 
                 <motion.button
                   type="submit"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.4, delay: 0.5 }}
-                  whileHover={{ scale: 1.02, boxShadow: '0 0 30px rgba(139, 92, 246, 0.5)' }}
+                  whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-gradient-to-r from-purple-600 to-purple-500 text-white font-semibold py-3 px-6 rounded-lg hover:from-purple-500 hover:to-purple-400 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg glow-purple-lg"
+                  className="w-full bg-white text-black font-semibold py-2.5 px-6 rounded-xl hover:bg-gray-200 transition-all duration-300 flex items-center justify-center space-x-2 text-sm"
                 >
                   <span>Send Message</span>
-                  <Send size={18} />
+                  <Send size={16} />
                 </motion.button>
               </div>
             </form>
@@ -267,11 +229,11 @@ const Contact = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-20 pt-8 border-t border-purple-500/30 text-center"
+          transition={{ duration: 0.5 }}
+          className="mt-16 pt-8 border-t border-gray-900 text-center"
         >
-          <p className="text-gray-400">
-            © 2024 <span className="text-purple-400 font-semibold">{personal.name}</span>. Built with React & passion for Android development.
+          <p className="text-gray-500 text-sm">
+            © 2024 <span className="text-white font-medium">{personal.name}</span>. Built with React & passion for Android development.
           </p>
         </motion.div>
       </div>
