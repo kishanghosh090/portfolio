@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, MessageSquare, User } from 'lucide-react';
 import { portfolioData } from '../data/mock';
 import { useToast } from '../hooks/use-toast';
+import { motion, useInView } from 'framer-motion';
 
 const Contact = () => {
   const { personal } = portfolioData;
@@ -12,6 +13,11 @@ const Contact = () => {
     message: ''
   });
 
+  const headerRef = useRef(null);
+  const formRef = useRef(null);
+  const isHeaderInView = useInView(headerRef, { once: true });
+  const isFormInView = useInView(formRef, { once: true, margin: "-100px" });
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -21,7 +27,6 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Mock form submission
     toast({
       title: "Message Sent!",
       description: "Thank you for reaching out. I'll get back to you soon.",
@@ -29,93 +34,161 @@ const Contact = () => {
     setFormData({ name: '', email: '', message: '' });
   };
 
+  const contactInfo = [
+    {
+      icon: Mail,
+      label: 'Email',
+      value: personal.email,
+      href: `mailto:${personal.email}`,
+      color: 'from-purple-600 to-purple-500'
+    },
+    {
+      icon: Phone,
+      label: 'Phone',
+      value: personal.phone,
+      href: `tel:${personal.phone}`,
+      color: 'from-purple-600 to-purple-500'
+    },
+    {
+      icon: MapPin,
+      label: 'Location',
+      value: personal.location,
+      href: null,
+      color: 'from-purple-600 to-purple-500'
+    }
+  ];
+
+  const socialLinks = [
+    {
+      icon: Github,
+      href: personal.github,
+      label: 'GitHub',
+      color: 'hover:bg-gray-700'
+    },
+    {
+      icon: Linkedin,
+      href: personal.linkedin,
+      label: 'LinkedIn',
+      color: 'hover:bg-purple-600'
+    }
+  ];
+
   return (
-    <section id="contact" className="min-h-screen bg-white py-20 px-4">
+    <section id="contact" className="min-h-screen bg-black py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <motion.div
+          ref={headerRef}
+          initial={{ opacity: 0, y: -30 }}
+          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <div className="flex items-center justify-center mb-4">
-            <Mail size={40} className="text-[#3DDC84]" />
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <MessageSquare size={40} className="text-purple-500" />
+            </motion.div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
             Get In Touch
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
             Have a project in mind or want to collaborate? Feel free to reach out!
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12" ref={formRef}>
           {/* Contact Information */}
-          <div className="space-y-6">
-            <div className="bg-gray-50 rounded-xl p-8 border border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
+          >
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-8 border border-purple-500/30 glow-purple">
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                <Mail className="text-purple-400" />
+                Contact Information
+              </h3>
               
               <div className="space-y-4">
-                <div className="flex items-start space-x-4">
-                  <div className="bg-[#3DDC84] p-3 rounded-lg">
-                    <Mail size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 font-medium">Email</p>
-                    <a href={`mailto:${personal.email}`} className="text-gray-900 hover:text-[#3DDC84] transition-colors">
-                      {personal.email}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="bg-[#3DDC84] p-3 rounded-lg">
-                    <Phone size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 font-medium">Phone</p>
-                    <a href={`tel:${personal.phone}`} className="text-gray-900 hover:text-[#3DDC84] transition-colors">
-                      {personal.phone}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="bg-[#3DDC84] p-3 rounded-lg">
-                    <MapPin size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 font-medium">Location</p>
-                    <p className="text-gray-900">{personal.location}</p>
-                  </div>
-                </div>
+                {contactInfo.map((info, index) => {
+                  const Icon = info.icon;
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      whileHover={{ x: 5 }}
+                      className="flex items-start space-x-4"
+                    >
+                      <div className={`bg-gradient-to-br ${info.color} p-3 rounded-lg glow-purple flex-shrink-0`}>
+                        <Icon size={20} className="text-white" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-400 font-medium">{info.label}</p>
+                        {info.href ? (
+                          <a
+                            href={info.href}
+                            className="text-white hover:text-purple-400 transition-colors"
+                          >
+                            {info.value}
+                          </a>
+                        ) : (
+                          <p className="text-white">{info.value}</p>
+                        )}
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
 
-              <div className="mt-8 pt-8 border-t border-gray-200">
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Follow Me</h4>
+              <div className="mt-8 pt-8 border-t border-purple-500/30">
+                <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                  <Github size={20} className="text-purple-400" />
+                  Follow Me
+                </h4>
                 <div className="flex space-x-4">
-                  <a
-                    href={personal.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-gray-900 p-3 rounded-lg hover:bg-gray-800 transition-colors"
-                  >
-                    <Github size={20} className="text-white" />
-                  </a>
-                  <a
-                    href={personal.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#0077B5] p-3 rounded-lg hover:bg-[#006399] transition-colors"
-                  >
-                    <Linkedin size={20} className="text-white" />
-                  </a>
+                  {socialLinks.map((social, index) => {
+                    const Icon = social.icon;
+                    return (
+                      <motion.a
+                        key={index}
+                        whileHover={{ scale: 1.1, y: -5 }}
+                        whileTap={{ scale: 0.95 }}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`bg-gray-800 p-3 rounded-lg ${social.color} transition-all duration-300 border border-purple-500/30 glow-purple`}
+                        aria-label={social.label}
+                      >
+                        <Icon size={20} className="text-white" />
+                      </motion.a>
+                    );
+                  })}
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact Form */}
-          <div>
-            <form onSubmit={handleSubmit} className="bg-gray-50 rounded-xl p-8 border border-gray-200">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.6 }}
+          >
+            <form onSubmit={handleSubmit} className="bg-gradient-to-br from-gray-900 to-purple-900/20 rounded-xl p-8 border border-purple-500/30 glow-purple">
               <div className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                >
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
+                    <User size={16} className="text-purple-400" />
                     Your Name
                   </label>
                   <input
@@ -125,13 +198,18 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DDC84] focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 bg-gray-800 border border-purple-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-white placeholder-gray-500"
                     placeholder="John Doe"
                   />
-                </div>
+                </motion.div>
 
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                >
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
+                    <Mail size={16} className="text-purple-400" />
                     Your Email
                   </label>
                   <input
@@ -141,13 +219,18 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DDC84] focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 bg-gray-800 border border-purple-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-white placeholder-gray-500"
                     placeholder="john@example.com"
                   />
-                </div>
+                </motion.div>
 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                >
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
+                    <MessageSquare size={16} className="text-purple-400" />
                     Your Message
                   </label>
                   <textarea
@@ -157,29 +240,40 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows="6"
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DDC84] focus:border-transparent transition-all resize-none"
+                    className="w-full px-4 py-3 bg-gray-800 border border-purple-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none text-white placeholder-gray-500"
                     placeholder="Tell me about your project..."
                   ></textarea>
-                </div>
+                </motion.div>
 
-                <button
+                <motion.button
                   type="submit"
-                  className="w-full bg-[#3DDC84] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[#2BB968] transition-all duration-300 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                  whileHover={{ scale: 1.02, boxShadow: '0 0 30px rgba(139, 92, 246, 0.5)' }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full bg-gradient-to-r from-purple-600 to-purple-500 text-white font-semibold py-3 px-6 rounded-lg hover:from-purple-500 hover:to-purple-400 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg glow-purple-lg"
                 >
                   <span>Send Message</span>
                   <Send size={18} />
-                </button>
+                </motion.button>
               </div>
             </form>
-          </div>
+          </motion.div>
         </div>
 
         {/* Footer */}
-        <div className="mt-20 pt-8 border-t border-gray-200 text-center">
-          <p className="text-gray-600">
-            © 2024 {personal.name}. Built with React & passion for Android development.
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-20 pt-8 border-t border-purple-500/30 text-center"
+        >
+          <p className="text-gray-400">
+            © 2024 <span className="text-purple-400 font-semibold">{personal.name}</span>. Built with React & passion for Android development.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
