@@ -2,146 +2,141 @@
 
 export const portfolioData = {
   personal: {
-    name: "Alex Chen",
+    name: "Kishan Rana Ghosh",
     title: "Android Developer",
-    tagline: "Crafting seamless mobile experiences with Kotlin & Jetpack Compose",
-    email: "alex.chen@example.com",
-    phone: "+1 (555) 123-4567",
-    location: "San Francisco, CA",
-    github: "https://github.com/alexchen",
-    linkedin: "https://linkedin.com/in/alexchen",
-    portfolio: "https://alexchen.dev"
+    tagline:
+      "Crafting seamless mobile experiences with Kotlin & Jetpack Compose",
+    email: "kishanghosh090@gmail.com",
+    phone: "+91 9635859574",
+    location: "Malda, West Bengal, India",
+    github: "https://github.com/kishanghosh090",
+    linkedin: "https://www.linkedin.com/in/kishan-rana-ghosh-8b95832b9",
+    portfolio: "https://kishanranaghosh.xyz",
+    leetcode: "https://leetcode.com/u/KishanRanaGhosh2005"
   },
 
   skills: [
     {
       id: 1,
       category: "Languages",
-      items: ["Kotlin", "Java", "Python", "XML"]
+      items: ["Kotlin", "Java", "Python", "Type Script"],
     },
     {
       id: 2,
       category: "Android Frameworks",
-      items: ["Jetpack Compose", "Android SDK", "Material Design", "ViewModel", "LiveData", "Room Database"]
+      items: [
+        "Jetpack Compose",
+        "Android SDK",
+        "Material Design",
+        "ViewModel",
+        "Room Database",
+      ],
     },
     {
       id: 3,
       category: "Architecture",
-      items: ["MVVM", "MVI", "Clean Architecture", "Repository Pattern"]
+      items: ["MVVM", "MVI", "Clean Architecture", "Repository Pattern"],
     },
     {
       id: 4,
       category: "Tools & Libraries",
-      items: ["Android Studio", "Git", "Gradle", "Retrofit", "Coroutines", "Hilt/Dagger", "Firebase"]
+      items: [
+        "Android Studio",
+        "Git",
+        "Gradle",
+        "Retrofit",
+        "Coroutines",
+        "Firebase",
+        "Docker",
+      ],
     },
     {
       id: 5,
       category: "Testing",
-      items: ["JUnit", "Espresso", "Mockito", "UI Automator"]
+      items: ["JUnit", "Espresso", "Mockito", "UI Automator"],
     },
     {
       id: 6,
       category: "Other",
-      items: ["REST APIs", "GraphQL", "CI/CD", "Agile/Scrum"]
-    }
+      items: ["REST APIs", "CI/CD"],
+    },
   ],
 
   projects: [
     {
       id: 1,
-      name: "FitTrack Pro",
-      description: "Comprehensive fitness tracking app with workout plans, calorie counter, and progress analytics",
-      tech: ["Kotlin", "Jetpack Compose", "Room", "Firebase"],
-      features: ["Custom workout builder", "Real-time sync", "Material Design 3"],
-      downloads: "10K+",
-      rating: 4.7
+      name: "Pathify",
+      description:
+        "Production-grade social media application with posts, real-time chat, notifications, and scalable backend architecture.",
+      tech: [
+        "Kotlin",
+        "Jetpack Compose",
+        "MVVM",
+        "Clean Architecture",
+        "Express",
+        "TypeScript",
+        "PostgreSQL",
+        "Redis",
+        "Socket.IO",
+        "Firebase Cloud Messaging",
+      ],
+      features: [
+        "JWT & OAuth authentication",
+        "Real-time one-to-one chat",
+        "Push notifications (FCM)",
+        "Offline-first notification handling",
+        "Posts, comments, and replies",
+        "Follow system",
+        "Scalable backend with queues",
+      ],
+      downloads: "In development",
+      rating: "N/A",
     },
-    {
-      id: 2,
-      name: "TaskFlow",
-      description: "Productivity app with task management, reminders, and team collaboration features",
-      tech: ["Kotlin", "MVVM", "Coroutines", "Hilt"],
-      features: ["Offline-first architecture", "Push notifications", "Dark mode support"],
-      downloads: "25K+",
-      rating: 4.5
-    },
-    {
-      id: 3,
-      name: "WeatherNow",
-      description: "Beautiful weather app with hourly forecasts, weather alerts, and location-based updates",
-      tech: ["Kotlin", "Retrofit", "OpenWeather API", "Jetpack Compose"],
-      features: ["7-day forecast", "Weather widgets", "Animated weather icons"],
-      downloads: "50K+",
-      rating: 4.8
-    },
-    {
-      id: 4,
-      name: "BudgetWise",
-      description: "Personal finance manager with expense tracking, budgets, and financial insights",
-      tech: ["Kotlin", "Room Database", "MPAndroidChart", "Biometric Auth"],
-      features: ["Expense categorization", "Budget alerts", "Data visualization"],
-      downloads: "15K+",
-      rating: 4.6
-    }
   ],
-
   education: [
     {
       id: 1,
-      degree: "Bachelor of Science in Computer Science",
-      institution: "University of California, Berkeley",
-      year: "2018 - 2022",
-      gpa: "3.8/4.0",
-      highlights: ["Mobile Development Track", "Dean's List (4 semesters)", "CS Honor Society"]
+      degree: "Bachelor of Science in Data Science and Applications",
+      institution: "Indian Institute of Technology Madras",
+      year: "2024 - Present",
+      gpa: "7.5/10.0",
+      highlights: [
+        "Core coursework in Computer Science and Data Science",
+        "Strong foundation in programming and problem-solving",
+        "Hands-on projects in full-stack and Android development",
+      ],
     },
-    {
-      id: 2,
-      degree: "Android Developer Nanodegree",
-      institution: "Udacity",
-      year: "2021",
-      highlights: ["Advanced Android Development", "Capstone Project: Award Winner"]
-    }
   ],
 
   certifications: [
     {
-      id: 1,
-      name: "Associate Android Developer",
-      issuer: "Google",
-      year: "2022"
+      // id: 1,
+      name: "coming soon",
+      // issuer: "Google",
+      // year: "2022",
     },
-    {
-      id: 2,
-      name: "Kotlin for Android Developers",
-      issuer: "JetBrains",
-      year: "2021"
-    }
+    // {
+    //   id: 2,
+    //   name: "Kotlin for Android Developers",
+    //   issuer: "JetBrains",
+    //   year: "2021",
+    // },
   ],
 
-  experience: [
-    {
-      id: 1,
-      title: "Senior Android Developer",
-      company: "TechCorp Inc.",
-      period: "2022 - Present",
-      description: "Leading development of flagship Android apps serving 1M+ users",
-      achievements: [
-        "Migrated legacy Java codebase to Kotlin, reducing code size by 30%",
-        "Implemented Jetpack Compose, improving UI development speed by 40%",
-        "Mentored 3 junior developers in Android best practices"
-      ]
-    },
-    {
-      id: 2,
-      title: "Android Developer Intern",
-      company: "StartupHub",
-      period: "2021 - 2022",
-      description: "Developed features for mobile marketplace app",
-      achievements: [
-        "Built product catalog with infinite scroll and caching",
-        "Integrated payment gateway with security best practices",
-        "Achieved 99.9% crash-free rate"
-      ]
-    }
-  ]
+ experience: [
+  {
+    id: 1,
+    title: "Web Developer Intern",
+    company: "Blogrator Web Service",
+    period: "2025 - present",
+    description:
+      "Worked on building and improving web applications with a focus on frontend development and backend integration.",
+    achievements: [
+      "Developed responsive web pages using modern JavaScript frameworks",
+      "Integrated REST APIs and handled client-side data flow",
+      "Collaborated with designers and backend developers to deliver features on time",
+    ],
+  },
+],
+
 };

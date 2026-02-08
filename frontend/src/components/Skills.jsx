@@ -91,7 +91,6 @@ const ProjectCard = ({ project, index }) => {
       <div className="flex items-center space-x-2 text-xs text-gray-500">
         <Download size={14} />
         <span className="font-medium">{project.downloads}</span>
-        <span>downloads</span>
       </div>
     </motion.div>
   );
