@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code2, Smartphone, Database, TestTube2, Wrench, Layers, Star, Download, TrendingUp } from 'lucide-react';
+import { Code2, Smartphone, Database, TestTube2, Wrench, Layers, Star, Download } from 'lucide-react';
 import { portfolioData } from '../data/mock';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
@@ -23,16 +23,16 @@ const SkillCard = ({ skillGroup, index }) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 hover:shadow-2xl transition-all duration-300 border border-purple-500/30 hover:border-purple-500/60 glow-purple group"
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
+      className="bg-[#0f0f0f] rounded-2xl p-5 hover:bg-[#1a1a1a] transition-all duration-300 border border-gray-900"
     >
       <div className="flex items-center space-x-3 mb-4">
-        <div className="bg-gradient-to-br from-purple-600 to-purple-500 p-3 rounded-lg glow-purple">
-          <Icon size={24} className="text-white" />
+        <div className="bg-white p-2 rounded-lg">
+          <Icon size={20} className="text-black" />
         </div>
-        <h3 className="text-xl font-semibold text-white group-hover:text-purple-400 transition-colors">
+        <h3 className="text-base font-semibold text-white">
           {skillGroup.category}
         </h3>
       </div>
@@ -42,9 +42,9 @@ const SkillCard = ({ skillGroup, index }) => {
             key={skillIndex}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3, delay: index * 0.1 + skillIndex * 0.05 }}
-            whileHover={{ scale: 1.05, y: -2 }}
-            className="px-3 py-1.5 bg-purple-500/10 text-purple-300 rounded-lg text-sm font-medium border border-purple-500/30 hover:border-purple-400 hover:bg-purple-500/20 transition-all duration-200 cursor-pointer"
+            transition={{ duration: 0.3, delay: index * 0.08 + skillIndex * 0.03 }}
+            whileHover={{ scale: 1.05 }}
+            className="px-3 py-1.5 bg-[#1a1a1a] text-gray-300 rounded-lg text-xs font-medium hover:bg-[#252525] transition-all duration-200 cursor-pointer border border-gray-800"
           >
             {skill}
           </motion.span>
@@ -61,48 +61,42 @@ const ProjectCard = ({ project, index }) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ y: -5, scale: 1.02 }}
-      className="bg-gradient-to-br from-gray-900 to-purple-900/20 rounded-xl p-6 border border-purple-500/30 hover:border-purple-500/60 hover:shadow-2xl transition-all duration-300 glow-purple"
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
+      whileHover={{ y: -3 }}
+      className="bg-[#0f0f0f] rounded-2xl p-5 border border-gray-900 hover:border-gray-800 hover:bg-[#1a1a1a] transition-all duration-300"
     >
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center space-x-3">
-          <div className="bg-gradient-to-br from-purple-600 to-purple-500 p-2 rounded-lg">
-            <Smartphone size={20} className="text-white" />
+      <div className="flex items-start justify-between mb-3">
+        <div className="flex items-center space-x-2">
+          <div className="bg-white p-1.5 rounded-lg">
+            <Smartphone size={16} className="text-black" />
           </div>
-          <h4 className="text-xl font-bold text-white">{project.name}</h4>
+          <h4 className="text-lg font-bold text-white">{project.name}</h4>
         </div>
-        <div className="flex items-center space-x-1 bg-gradient-to-r from-purple-600 to-purple-500 px-3 py-1 rounded-lg glow-purple">
-          <Star size={14} className="text-white fill-white" />
-          <span className="text-white text-sm font-semibold">{project.rating}</span>
+        <div className="flex items-center space-x-1 bg-[#1a1a1a] px-2 py-1 rounded-lg border border-gray-800">
+          <Star size={12} className="text-white fill-white" />
+          <span className="text-white text-xs font-semibold">{project.rating}</span>
         </div>
       </div>
       
-      <p className="text-gray-300 mb-4 text-sm">{project.description}</p>
+      <p className="text-gray-400 mb-3 text-sm leading-relaxed">{project.description}</p>
       
-      <div className="flex flex-wrap gap-2 mb-4">
+      <div className="flex flex-wrap gap-1.5 mb-3">
         {project.tech.map((tech, techIndex) => (
           <span
             key={techIndex}
-            className="px-2 py-1 bg-purple-500/20 text-purple-300 rounded text-xs font-medium border border-purple-500/40"
+            className="px-2 py-0.5 bg-[#1a1a1a] text-gray-400 rounded text-xs border border-gray-800"
           >
             {tech}
           </span>
         ))}
       </div>
       
-      <div className="flex items-center justify-between text-sm">
-        <div className="flex items-center space-x-2 text-gray-400">
-          <Download size={16} className="text-purple-400" />
-          <span className="font-semibold text-purple-400">{project.downloads}</span>
-          <span>downloads</span>
-        </div>
-        <div className="flex items-center space-x-1 text-green-400">
-          <TrendingUp size={16} />
-          <span className="text-xs">Trending</span>
-        </div>
+      <div className="flex items-center space-x-2 text-xs text-gray-500">
+        <Download size={14} />
+        <span className="font-medium">{project.downloads}</span>
+        <span>downloads</span>
       </div>
     </motion.div>
   );
@@ -114,32 +108,24 @@ const Skills = () => {
   const isHeaderInView = useInView(headerRef, { once: true });
 
   return (
-    <section id="skills" className="min-h-screen bg-black py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section id="skills" className="min-h-screen bg-black py-16 px-4">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           ref={headerRef}
-          initial={{ opacity: 0, y: -30 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: -20 }}
+          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
         >
-          <div className="flex items-center justify-center mb-4">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-            >
-              <Code2 size={40} className="text-purple-500" />
-            </motion.div>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
             Skills & Expertise
           </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Proficient in modern Android development technologies and best practices
+          <p className="text-base text-gray-500 max-w-2xl mx-auto">
+            Proficient in modern Android development technologies
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
           {skills.map((skillGroup, index) => (
             <SkillCard key={skillGroup.id} skillGroup={skillGroup} index={index} />
           ))}
@@ -149,17 +135,13 @@ const Skills = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-16"
+          transition={{ duration: 0.5 }}
+          className="mt-12"
         >
-          <div className="flex items-center justify-center space-x-3 mb-8">
-            <Star size={28} className="text-purple-500" />
-            <h3 className="text-3xl font-bold gradient-text text-center">
-              Featured Projects
-            </h3>
-            <Star size={28} className="text-purple-500" />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <h3 className="text-2xl font-bold text-white mb-6 text-center">
+            Featured Projects
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {projects.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
             ))}

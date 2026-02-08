@@ -47,8 +47,8 @@ const Navbar = () => {
       transition={{ duration: 0.6, delay: 0.5 }}
       className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50"
     >
-      <div className="bg-gray-900/80 backdrop-blur-xl border border-purple-500/30 rounded-full shadow-2xl glow-purple px-6 py-3">
-        <ul className="flex items-center space-x-2">
+      <div className="bg-[#1a1a1a] backdrop-blur-xl border border-gray-800 rounded-full shadow-2xl px-4 py-2">
+        <ul className="flex items-center space-x-1">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeSection === item.id;
@@ -60,8 +60,8 @@ const Navbar = () => {
                   onClick={() => scrollToSection(item.id)}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 ${
                     isActive
-                      ? 'bg-gradient-to-r from-purple-600 to-purple-500 text-white shadow-lg glow-purple'
-                      : 'text-gray-300 hover:bg-gray-800 hover:text-purple-400'
+                      ? 'bg-white text-black'
+                      : 'text-gray-400 hover:bg-gray-800 hover:text-white'
                   }`}
                 >
                   <Icon size={18} />
