@@ -12,7 +12,8 @@ export const portfolioData = {
     github: "https://github.com/kishanghosh090",
     linkedin: "https://www.linkedin.com/in/kishan-rana-ghosh-8b95832b9",
     portfolio: "https://kishanranaghosh.xyz",
-    leetcode: "https://leetcode.com/u/KishanRanaGhosh2005"
+    leetcode: "https://leetcode.com/u/KishanRanaGhosh2005",
+    resume: "../"
   },
 
   skills: [

@@ -1,11 +1,12 @@
 import React from "react";
-import { Github, Linkedin, Mail, Download,  } from "lucide-react";
+import { Github, Linkedin, Mail, Download } from "lucide-react";
 import { SiLeetcode } from "react-icons/si";
 
 import { portfolioData } from "../data/mock";
 import { motion } from "framer-motion";
 
 import kishan from "./kishan.jpeg";
+import resumePdf from "../../assets/KISHAN RANA GHOSH-3.pdf";
 const Hero = () => {
   const { personal } = portfolioData;
 
@@ -104,12 +105,14 @@ const Hero = () => {
             <span>Leet Code</span>
           </a>
 
-          
-
-          <button className="flex items-center space-x-2 px-5 py-2.5 bg-transparent text-white border border-gray-700 rounded-full hover:bg-[#1a1a1a] transition-colors duration-200 text-sm font-medium">
+          <a
+            href={resumePdf}
+            download="Kishan_Rana_Ghosh_Resume.pdf"
+            className="flex items-center space-x-2 px-5 py-2.5 bg-transparent text-white border border-gray-700 rounded-full hover:bg-[#1a1a1a] transition-colors duration-200 text-sm font-medium"
+          >
             <Download size={18} />
             <span>Resume</span>
-          </button>
+          </a>
         </motion.div>
 
         <motion.div
