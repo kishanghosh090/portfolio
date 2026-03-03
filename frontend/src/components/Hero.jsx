@@ -6,7 +6,6 @@ import { portfolioData } from "../data/mock";
 import { motion } from "framer-motion";
 
 import kishan from "./kishan.jpeg";
-import resumePdf from "../../assets/KISHAN RANA GHOSH-3.pdf";
 const Hero = () => {
   const { personal } = portfolioData;
 
@@ -106,7 +105,7 @@ const Hero = () => {
           </a>
 
           <a
-            href={resumePdf}
+            href="/KISHAN RANA GHOSH-3.pdf"
             download="Kishan_Rana_Ghosh_Resume.pdf"
             className="flex items-center space-x-2 px-5 py-2.5 bg-transparent text-white border border-gray-700 rounded-full hover:bg-[#1a1a1a] transition-colors duration-200 text-sm font-medium"
           >
