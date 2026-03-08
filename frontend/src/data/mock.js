@@ -117,7 +117,7 @@ export const portfolioData = {
       ],
       downloads: "Published on NPM",
       rating: "npm",
-      githubLink: "https://github.com/kishanghosh090/portfolio",
+      githubLink: "https://github.com/kishanghosh090/Media-Pipeline-sdk",
       npmLink: "https://www.npmjs.com/package/mediapipeline-sdk",
     },
   ],
