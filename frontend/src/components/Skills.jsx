@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code2, Smartphone, Database, TestTube2, Wrench, Layers, Star, Download } from 'lucide-react';
+import { Code2, Smartphone, Database, TestTube2, Wrench, Layers, Star, Download, Github, Package } from 'lucide-react';
 import { portfolioData } from '../data/mock';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
@@ -70,8 +70,17 @@ const ProjectCard = ({ project, index }) => {
           <h4 className="text-lg font-bold text-white">{project.name}</h4>
         </div>
         <div className="flex items-center space-x-1 bg-[#1a1a1a] px-2 py-1 rounded-lg border border-gray-800">
-          <Star size={12} className="text-white fill-white" />
-          <span className="text-white text-xs font-semibold">{project.rating}</span>
+          {project.rating === 'npm' ? (
+            <>
+              <Package size={12} className="text-white" />
+              <span className="text-white text-xs font-semibold">NPM</span>
+            </>
+          ) : (
+            <>
+              <Star size={12} className="text-white fill-white" />
+              <span className="text-white text-xs font-semibold">{project.rating}</span>
+            </>
+          )}
         </div>
       </div>
       
@@ -88,9 +97,38 @@ const ProjectCard = ({ project, index }) => {
         ))}
       </div>
       
-      <div className="flex items-center space-x-2 text-xs text-gray-500">
-        <Download size={14} />
-        <span className="font-medium">{project.downloads}</span>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-2 text-xs text-gray-500">
+          <Download size={14} />
+          <span className="font-medium">{project.downloads}</span>
+        </div>
+        
+        {(project.githubLink || project.npmLink) && (
+          <div className="flex items-center space-x-2">
+            {project.githubLink && (
+              <a
+                href={project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#1a1a1a] p-1.5 rounded-lg border border-gray-800 hover:bg-[#252525] transition-colors duration-150"
+                title="View on GitHub"
+              >
+                <Github size={14} className="text-white" />
+              </a>
+            )}
+            {project.npmLink && (
+              <a
+                href={project.npmLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#1a1a1a] p-1.5 rounded-lg border border-gray-800 hover:bg-[#252525] transition-colors duration-150"
+                title="View on NPM"
+              >
+                <Package size={14} className="text-white" />
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </motion.div>
   );

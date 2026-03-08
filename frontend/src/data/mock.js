@@ -93,6 +93,33 @@ export const portfolioData = {
       downloads: "In development",
       rating: "N/A",
     },
+    {
+      id: 2,
+      name: "Media Pipeline SDK",
+      description:
+        "A powerful TypeScript SDK for media processing with support for image optimization, video transcoding, and HLS streaming. Published on NPM for production use.",
+      tech: [
+        "TypeScript",
+        "Node.js",
+        "FFmpeg",
+        "Sharp",
+        "HLS",
+        "Video Processing",
+      ],
+      features: [
+        "Image processing & optimization",
+        "Video transcoding with quality presets",
+        "HLS streaming generation",
+        "Local & cloud storage support",
+        "Flexible pipeline architecture",
+        "Full TypeScript support",
+        "Resolution management",
+      ],
+      downloads: "Published on NPM",
+      rating: "npm",
+      githubLink: "https://github.com/kishanghosh090/portfolio",
+      npmLink: "https://www.npmjs.com/package/mediapipeline-sdk",
+    },
   ],
   education: [
     {
