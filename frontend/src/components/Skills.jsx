@@ -1,21 +1,33 @@
-import React from 'react';
-import { Code2, Smartphone, Database, TestTube2, Wrench, Layers, Star, Download, Github, Package } from 'lucide-react';
-import { portfolioData } from '../data/mock';
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import React from "react";
+import {
+  Code2,
+  Smartphone,
+  Database,
+  TestTube2,
+  Wrench,
+  Layers,
+  Star,
+  Download,
+  Github,
+  Package,
+  BookOpen,
+} from "lucide-react";
+import { portfolioData } from "../data/mock";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 const SkillCard = ({ skillGroup, index }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   const iconMap = {
-    'Languages': Code2,
-    'Android Frameworks': Smartphone,
-    'Architecture': Layers,
-    'Tools & Libraries': Wrench,
-    'Testing': TestTube2,
-    'Other': Database
+    Languages: Code2,
+    "Android Frameworks": Smartphone,
+    Architecture: Layers,
+    "Tools & Libraries": Wrench,
+    Testing: TestTube2,
+    Other: Database,
   };
 
   const Icon = iconMap[skillGroup.category] || Code2;
@@ -70,7 +82,7 @@ const ProjectCard = ({ project, index }) => {
           <h4 className="text-lg font-bold text-white">{project.name}</h4>
         </div>
         <div className="flex items-center space-x-1 bg-[#1a1a1a] px-2 py-1 rounded-lg border border-gray-800">
-          {project.rating === 'npm' ? (
+          {project.rating === "npm" ? (
             <>
               <Package size={12} className="text-white" />
               <span className="text-white text-xs font-semibold">NPM</span>
@@ -78,14 +90,18 @@ const ProjectCard = ({ project, index }) => {
           ) : (
             <>
               <Star size={12} className="text-white fill-white" />
-              <span className="text-white text-xs font-semibold">{project.rating}</span>
+              <span className="text-white text-xs font-semibold">
+                {project.rating}
+              </span>
             </>
           )}
         </div>
       </div>
-      
-      <p className="text-gray-400 mb-3 text-sm leading-relaxed">{project.description}</p>
-      
+
+      <p className="text-gray-400 mb-3 text-sm leading-relaxed">
+        {project.description}
+      </p>
+
       <div className="flex flex-wrap gap-1.5 mb-3">
         {project.tech.map((tech, techIndex) => (
           <span
@@ -96,14 +112,16 @@ const ProjectCard = ({ project, index }) => {
           </span>
         ))}
       </div>
-      
+
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2 text-xs text-gray-500">
           <Download size={14} />
           <span className="font-medium">{project.downloads}</span>
         </div>
-        
-        {(project.githubLink || project.npmLink) && (
+
+        {(project.githubLink ||
+          project.npmLink ||
+          project.documentationLink) && (
           <div className="flex items-center space-x-2">
             {project.githubLink && (
               <a
@@ -127,6 +145,17 @@ const ProjectCard = ({ project, index }) => {
                 <Package size={14} className="text-white" />
               </a>
             )}
+            {project.documentationLink && (
+              <a
+                href={project.documentationLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#1a1a1a] p-1.5 rounded-lg border border-gray-800 hover:bg-[#252525] transition-colors duration-150"
+                title="View Documentation"
+              >
+                <BookOpen size={14} className="text-white" />
+              </a>
+            )}
           </div>
         )}
       </div>
@@ -145,7 +174,9 @@ const Skills = () => {
         <motion.div
           ref={headerRef}
           initial={{ opacity: 0, y: -10 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+          animate={
+            isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }
+          }
           transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           className="text-center mb-12"
         >
@@ -159,7 +190,11 @@ const Skills = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
           {skills.map((skillGroup, index) => (
-            <SkillCard key={skillGroup.id} skillGroup={skillGroup} index={index} />
+            <SkillCard
+              key={skillGroup.id}
+              skillGroup={skillGroup}
+              index={index}
+            />
           ))}
         </div>
 

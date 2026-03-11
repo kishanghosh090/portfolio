@@ -13,7 +13,7 @@ export const portfolioData = {
     linkedin: "https://www.linkedin.com/in/kishan-rana-ghosh-8b95832b9",
     portfolio: "https://kishanranaghosh.xyz",
     leetcode: "https://leetcode.com/u/KishanRanaGhosh2005",
-    resume: "../"
+    resume: "../",
   },
 
   skills: [
@@ -118,6 +118,7 @@ export const portfolioData = {
       downloads: "Published on NPM",
       rating: "npm",
       githubLink: "https://github.com/kishanghosh090/Media-Pipeline-sdk",
+      documentationLink: "https://media-pipeline-sdk-docs.vercel.app",
       npmLink: "https://www.npmjs.com/package/mediapipeline-sdk",
     },
   ],
@@ -151,20 +152,19 @@ export const portfolioData = {
     // },
   ],
 
- experience: [
-  {
-    id: 1,
-    title: "Web Developer Intern",
-    company: "Blogrator Web Service",
-    period: "2025 - present",
-    description:
-      "Worked on building and improving web applications with a focus on frontend development and backend integration.",
-    achievements: [
-      "Developed responsive web pages using modern JavaScript frameworks",
-      "Integrated REST APIs and handled client-side data flow",
-      "Collaborated with designers and backend developers to deliver features on time",
-    ],
-  },
-],
-
+  experience: [
+    {
+      id: 1,
+      title: "Web Developer Intern",
+      company: "Blogrator Web Service",
+      period: "2025 - present",
+      description:
+        "Worked on building and improving web applications with a focus on frontend development and backend integration.",
+      achievements: [
+        "Developed responsive web pages using modern JavaScript frameworks",
+        "Integrated REST APIs and handled client-side data flow",
+        "Collaborated with designers and backend developers to deliver features on time",
+      ],
+    },
+  ],
 };
