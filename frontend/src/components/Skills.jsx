@@ -12,7 +12,7 @@ import {
   Package,
   BookOpen,
 } from "lucide-react";
-import { portfolioData } from "../data/mock";
+import { portfolioData } from "../data/kishandata";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";

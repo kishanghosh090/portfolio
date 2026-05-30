@@ -2,7 +2,7 @@ import React from "react";
 import { Github, Linkedin, Mail, Download } from "lucide-react";
 import { SiLeetcode } from "react-icons/si";
 
-import { portfolioData } from "../data/mock";
+import { portfolioData } from "../data/kishandata";
 import { motion } from "framer-motion";
 
 import kishan from "./kishan.jpeg";

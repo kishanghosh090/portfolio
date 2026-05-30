@@ -1,71 +1,95 @@
-import React, { useState, useRef } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
-import { portfolioData } from '../data/mock';
-import { useToast } from '../hooks/use-toast';
-import { motion, useInView } from 'framer-motion';
+import React, { useState, useRef } from "react";
+import { Mail, Phone, MapPin, Send, Github, Linkedin } from "lucide-react";
+import { portfolioData } from "../data/kishandata";
+import { useToast } from "../hooks/use-toast";
+import { motion, useInView } from "framer-motion";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const { personal } = portfolioData;
   const { toast } = useToast();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
 
   const headerRef = useRef(null);
   const formRef = useRef(null);
+  const formInViewRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true });
-  const isFormInView = useInView(formRef, { once: true, amount: 0.3 });
+  const isFormInView = useInView(formInViewRef, { once: true, amount: 0.3 });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    setFormData({ name: '', email: '', message: '' });
+    // Replace these strings with your actual EmailJS credentials
+    const serviceId = "service_8hjc37a";
+    const templateId = "template_l64wy22";
+    const publicKey = "H8P4OdLra6PfJ5V_t";
+    emailjs
+      .sendForm(serviceId, templateId, formRef.current, {
+        publicKey: publicKey,
+      })
+      .then(
+        () => {
+          toast({
+            title: "Message Sent!",
+            description:
+              "Thank you for reaching out. I'll get back to you soon.",
+          });
+          formRef.current.reset(); // Clears the form inputs
+        },
+        (error) => {
+          console.log(error);
+
+          toast({
+            title: "Message Sent Failed!!",
+            description: "Try again later or use another method for contact",
+          });
+        },
+      );
+    setFormData({ name: "", email: "", message: "" });
   };
 
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
+      label: "Email",
       value: personal.email,
-      href: `mailto:${personal.email}`
+      href: `mailto:${personal.email}`,
     },
     {
       icon: Phone,
-      label: 'Phone',
+      label: "Phone",
       value: personal.phone,
-      href: `tel:${personal.phone}`
+      href: `tel:${personal.phone}`,
     },
     {
       icon: MapPin,
-      label: 'Location',
+      label: "Location",
       value: personal.location,
-      href: null
-    }
+      href: null,
+    },
   ];
 
   const socialLinks = [
     {
       icon: Github,
       href: personal.github,
-      label: 'GitHub'
+      label: "GitHub",
     },
     {
       icon: Linkedin,
       href: personal.linkedin,
-      label: 'LinkedIn'
-    }
+      label: "LinkedIn",
+    },
   ];
 
   return (
@@ -74,7 +98,9 @@ const Contact = () => {
         <motion.div
           ref={headerRef}
           initial={{ opacity: 0, y: -10 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+          animate={
+            isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }
+          }
           transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           className="text-center mb-12"
         >
@@ -82,34 +108,41 @@ const Contact = () => {
             Get In Touch
           </h2>
           <p className="text-base text-gray-500 max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach out!
+            Have a project in mind or want to collaborate? Feel free to reach
+            out!
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" ref={formRef}>
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+          ref={formInViewRef}
+        >
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={
+              isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+            }
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             className="space-y-4"
           >
             <div className="bg-[#0f0f0f] rounded-2xl p-6 border border-gray-900">
-              <h3 className="text-xl font-bold text-white mb-5">Contact Information</h3>
-              
+              <h3 className="text-xl font-bold text-white mb-5">
+                Contact Information
+              </h3>
+
               <div className="space-y-4">
                 {contactInfo.map((info, index) => {
                   const Icon = info.icon;
                   return (
-                    <div
-                      key={index}
-                      className="flex items-start space-x-3"
-                    >
+                    <div key={index} className="flex items-start space-x-3">
                       <div className="bg-white p-2 rounded-lg flex-shrink-0">
                         <Icon size={16} className="text-black" />
                       </div>
                       <div>
-                        <p className="text-xs text-gray-500 font-medium">{info.label}</p>
+                        <p className="text-xs text-gray-500 font-medium">
+                          {info.label}
+                        </p>
                         {info.href ? (
                           <a
                             href={info.href}
@@ -127,7 +160,9 @@ const Contact = () => {
               </div>
 
               <div className="mt-6 pt-6 border-t border-gray-900">
-                <h4 className="text-base font-semibold text-white mb-3">Follow Me</h4>
+                <h4 className="text-base font-semibold text-white mb-3">
+                  Follow Me
+                </h4>
                 <div className="flex space-x-3">
                   {socialLinks.map((social, index) => {
                     const Icon = social.icon;
@@ -152,13 +187,22 @@ const Contact = () => {
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={
+              isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+            }
             transition={{ duration: 0.3, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
           >
-            <form onSubmit={handleSubmit} className="bg-[#0f0f0f] rounded-2xl p-6 border border-gray-900">
+            <form
+              ref={formRef}
+              onSubmit={handleSubmit}
+              className="bg-[#0f0f0f] rounded-2xl p-6 border border-gray-900"
+            >
               <div className="space-y-4">
                 <div>
-                  <label htmlFor="name" className="block text-xs font-medium text-gray-400 mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-xs font-medium text-gray-400 mb-2"
+                  >
                     Your Name
                   </label>
                   <input
@@ -174,7 +218,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-xs font-medium text-gray-400 mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-xs font-medium text-gray-400 mb-2"
+                  >
                     Your Email
                   </label>
                   <input
@@ -190,7 +237,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-xs font-medium text-gray-400 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-xs font-medium text-gray-400 mb-2"
+                  >
                     Your Message
                   </label>
                   <textarea
@@ -226,7 +276,9 @@ const Contact = () => {
           className="mt-16 pt-8 border-t border-gray-900 text-center"
         >
           <p className="text-gray-500 text-sm">
-            © 2024 <span className="text-white font-medium">{personal.name}</span>. Built with React & passion for Android development.
+            © 2024{" "}
+            <span className="text-white font-medium">{personal.name}</span>.
+            Built with React & passion for Android development.
           </p>
         </motion.div>
       </div>

@@ -1,7 +1,14 @@
-import React, { useRef } from 'react';
-import { GraduationCap, Award, Briefcase, CheckCircle, Calendar, MapPin } from 'lucide-react';
-import { portfolioData } from '../data/mock';
-import { motion, useInView } from 'framer-motion';
+import React, { useRef } from "react";
+import {
+  GraduationCap,
+  Award,
+  Briefcase,
+  CheckCircle,
+  Calendar,
+  MapPin,
+} from "lucide-react";
+import { portfolioData } from "../data/kishandata";
+import { motion, useInView } from "framer-motion";
 
 const ExperienceCard = ({ exp, index }) => {
   const ref = useRef(null);
@@ -40,7 +47,10 @@ const ExperienceCard = ({ exp, index }) => {
             key={achIndex}
             className="flex items-start space-x-2 text-xs text-gray-400"
           >
-            <CheckCircle size={14} className="text-white mt-0.5 flex-shrink-0" />
+            <CheckCircle
+              size={14}
+              className="text-white mt-0.5 flex-shrink-0"
+            />
             <span>{achievement}</span>
           </li>
         ))}
@@ -80,7 +90,9 @@ const EducationCard = ({ edu, index }) => {
         </div>
       </div>
       {edu.gpa && (
-        <p className="text-gray-400 font-medium mb-3 text-sm">GPA: <span className="text-white">{edu.gpa}</span></p>
+        <p className="text-gray-400 font-medium mb-3 text-sm">
+          GPA: <span className="text-white">{edu.gpa}</span>
+        </p>
       )}
       <ul className="space-y-2">
         {edu.highlights.map((highlight, hlIndex) => (
@@ -88,7 +100,10 @@ const EducationCard = ({ edu, index }) => {
             key={hlIndex}
             className="flex items-start space-x-2 text-xs text-gray-400"
           >
-            <CheckCircle size={14} className="text-white mt-0.5 flex-shrink-0" />
+            <CheckCircle
+              size={14}
+              className="text-white mt-0.5 flex-shrink-0"
+            />
             <span>{highlight}</span>
           </li>
         ))}
@@ -115,7 +130,9 @@ const CertificationCard = ({ cert, index }) => {
         </div>
         <div>
           <h4 className="text-base font-bold text-white mb-1">{cert.name}</h4>
-          <p className="text-gray-400 font-medium mb-1 text-sm">{cert.issuer}</p>
+          <p className="text-gray-400 font-medium mb-1 text-sm">
+            {cert.issuer}
+          </p>
           <div className="flex items-center space-x-1.5 text-gray-500 text-xs">
             <Calendar size={12} />
             <p>{cert.year}</p>
@@ -137,7 +154,9 @@ const Education = () => {
         <motion.div
           ref={headerRef}
           initial={{ opacity: 0, y: -10 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+          animate={
+            isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }
+          }
           transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           className="text-center mb-12"
         >
@@ -153,7 +172,9 @@ const Education = () => {
         <div className="mb-12">
           <div className="flex items-center space-x-2 mb-6">
             <Briefcase size={22} className="text-white" />
-            <h3 className="text-xl md:text-2xl font-bold text-white">Experience</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-white">
+              Experience
+            </h3>
           </div>
           <div className="space-y-4">
             {experience.map((exp, index) => (
@@ -166,7 +187,9 @@ const Education = () => {
         <div className="mb-12">
           <div className="flex items-center space-x-2 mb-6">
             <GraduationCap size={22} className="text-white" />
-            <h3 className="text-xl md:text-2xl font-bold text-white">Education</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-white">
+              Education
+            </h3>
           </div>
           <div className="space-y-4">
             {education.map((edu, index) => (
@@ -179,7 +202,9 @@ const Education = () => {
         <div>
           <div className="flex items-center space-x-2 mb-6">
             <Award size={22} className="text-white" />
-            <h3 className="text-xl md:text-2xl font-bold text-white">Certifications</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-white">
+              Certifications
+            </h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {certifications.map((cert, index) => (
