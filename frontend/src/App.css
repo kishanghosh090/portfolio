@@ -11,15 +11,22 @@ html {
 
 body {
     overflow-x: hidden;
+    cursor: none;
+}
+
+@media (pointer: coarse) {
+    body {
+        cursor: auto;
+    }
 }
 
 .App {
     width: 100%;
     overflow-x: hidden;
-    background-color: #0a0a0a;
+    background-color: #050810;
+    position: relative;
 }
 
-/* Smooth scroll snap */
 section {
     scroll-margin-top: 80px;
 }

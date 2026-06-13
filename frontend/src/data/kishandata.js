@@ -3,9 +3,9 @@
 export const portfolioData = {
   personal: {
     name: "Kishan Rana Ghosh",
-    title: "Android Developer",
+    title: "Mobile & Backend Developer",
     tagline:
-      "Crafting seamless mobile experiences with Kotlin & Jetpack Compose",
+      "Crafting seamless mobile experiences with Kotlin, Jetpack Compose, and scalable backend solutions.",
     email: "kishanghosh090@gmail.com",
     phone: "+91 9635859574",
     location: "Malda, West Bengal, India",

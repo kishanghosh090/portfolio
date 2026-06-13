@@ -2,8 +2,9 @@ import React, { useState, useRef } from "react";
 import { Mail, Phone, MapPin, Send, Github, Linkedin } from "lucide-react";
 import { portfolioData } from "../data/kishandata";
 import { useToast } from "../hooks/use-toast";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import { fadeUp, staggerContainer, viewport } from "../lib/motion";
 
 const Contact = () => {
   const { personal } = portfolioData;
@@ -14,11 +15,7 @@ const Contact = () => {
     message: "",
   });
 
-  const headerRef = useRef(null);
   const formRef = useRef(null);
-  const formInViewRef = useRef(null);
-  const isHeaderInView = useInView(headerRef, { once: true });
-  const isFormInView = useInView(formInViewRef, { once: true, amount: 0.3 });
 
   const handleChange = (e) => {
     setFormData({
@@ -29,7 +26,6 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Replace these strings with your actual EmailJS credentials
     const serviceId = "service_8hjc37a";
     const templateId = "template_l64wy22";
     const publicKey = "H8P4OdLra6PfJ5V_t";
@@ -44,7 +40,7 @@ const Contact = () => {
             description:
               "Thank you for reaching out. I'll get back to you soon.",
           });
-          formRef.current.reset(); // Clears the form inputs
+          formRef.current.reset();
         },
         (error) => {
           console.log(error);
@@ -93,40 +89,33 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="min-h-screen bg-black py-16 px-4">
+    <section id="contact" className="min-h-screen section-dark py-16 px-4">
       <div className="max-w-5xl mx-auto">
         <motion.div
-          ref={headerRef}
-          initial={{ opacity: 0, y: -10 }}
-          animate={
-            isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }
-          }
-          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          variants={fadeUp}
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
             Get In Touch
           </h2>
-          <p className="text-base text-gray-500 max-w-2xl mx-auto">
+          <p className="text-base text-slate-500 max-w-2xl mx-auto">
             Have a project in mind or want to collaborate? Feel free to reach
             out!
           </p>
         </motion.div>
 
-        <div
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
           className="grid grid-cols-1 lg:grid-cols-2 gap-6"
-          ref={formInViewRef}
         >
-          {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={
-              isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-            }
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="space-y-4"
-          >
-            <div className="bg-[#0f0f0f] rounded-2xl p-6 border border-gray-900">
+          <motion.div variants={fadeUp} className="space-y-4">
+            <div className="card-dark rounded-2xl p-6">
               <h3 className="text-xl font-bold text-white mb-5">
                 Contact Information
               </h3>
@@ -136,17 +125,17 @@ const Contact = () => {
                   const Icon = info.icon;
                   return (
                     <div key={index} className="flex items-start space-x-3">
-                      <div className="bg-white p-2 rounded-lg flex-shrink-0">
-                        <Icon size={16} className="text-black" />
+                      <div className="bg-blue-600/90 p-2 rounded-lg flex-shrink-0">
+                        <Icon size={16} className="text-white" />
                       </div>
                       <div>
-                        <p className="text-xs text-gray-500 font-medium">
+                        <p className="text-xs text-slate-500 font-medium">
                           {info.label}
                         </p>
                         {info.href ? (
                           <a
                             href={info.href}
-                            className="text-white hover:text-gray-300 transition-colors duration-150 text-sm"
+                            className="text-white hover:text-blue-300 transition-colors duration-200 text-sm"
                           >
                             {info.value}
                           </a>
@@ -159,7 +148,7 @@ const Contact = () => {
                 })}
               </div>
 
-              <div className="mt-6 pt-6 border-t border-gray-900">
+              <div className="mt-6 pt-6 border-t border-blue-900/30">
                 <h4 className="text-base font-semibold text-white mb-3">
                   Follow Me
                 </h4>
@@ -172,7 +161,7 @@ const Contact = () => {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-[#1a1a1a] p-2.5 rounded-lg hover:bg-[#252525] transition-colors duration-150 border border-gray-800"
+                        className="bg-blue-950/40 p-2.5 rounded-lg hover:bg-blue-900/40 transition-colors duration-200 border border-blue-900/30"
                         aria-label={social.label}
                       >
                         <Icon size={18} className="text-white" />
@@ -184,24 +173,17 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={
-              isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-            }
-            transition={{ duration: 0.3, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
-          >
+          <motion.div variants={fadeUp}>
             <form
               ref={formRef}
               onSubmit={handleSubmit}
-              className="bg-[#0f0f0f] rounded-2xl p-6 border border-gray-900"
+              className="card-dark rounded-2xl p-6"
             >
               <div className="space-y-4">
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-xs font-medium text-gray-400 mb-2"
+                    className="block text-xs font-medium text-slate-400 mb-2"
                   >
                     Your Name
                   </label>
@@ -212,7 +194,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2.5 bg-[#1a1a1a] border border-gray-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white transition-all duration-150 text-white placeholder-gray-600 text-sm"
+                    className="w-full px-4 py-2.5 bg-blue-950/30 border border-blue-900/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 text-white placeholder-slate-600 text-sm"
                     placeholder="John Doe"
                   />
                 </div>
@@ -220,7 +202,7 @@ const Contact = () => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-xs font-medium text-gray-400 mb-2"
+                    className="block text-xs font-medium text-slate-400 mb-2"
                   >
                     Your Email
                   </label>
@@ -231,7 +213,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2.5 bg-[#1a1a1a] border border-gray-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white transition-all duration-150 text-white placeholder-gray-600 text-sm"
+                    className="w-full px-4 py-2.5 bg-blue-950/30 border border-blue-900/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 text-white placeholder-slate-600 text-sm"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -239,7 +221,7 @@ const Contact = () => {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-xs font-medium text-gray-400 mb-2"
+                    className="block text-xs font-medium text-slate-400 mb-2"
                   >
                     Your Message
                   </label>
@@ -250,14 +232,14 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows="5"
-                    className="w-full px-4 py-2.5 bg-[#1a1a1a] border border-gray-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-white focus:border-white transition-all duration-150 resize-none text-white placeholder-gray-600 text-sm"
+                    className="w-full px-4 py-2.5 bg-blue-950/30 border border-blue-900/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 resize-none text-white placeholder-slate-600 text-sm"
                     placeholder="Tell me about your project..."
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-white text-black font-semibold py-2.5 px-6 rounded-xl hover:bg-gray-200 transition-colors duration-150 flex items-center justify-center space-x-2 text-sm"
+                  className="w-full bg-blue-600 text-white font-semibold py-2.5 px-6 rounded-xl hover:bg-blue-500 transition-colors duration-200 flex items-center justify-center space-x-2 text-sm shadow-lg shadow-blue-600/20"
                 >
                   <span>Send Message</span>
                   <Send size={16} />
@@ -265,17 +247,16 @@ const Contact = () => {
               </div>
             </form>
           </motion.div>
-        </div>
+        </motion.div>
 
-        {/* Footer */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.3 }}
-          className="mt-16 pt-8 border-t border-gray-900 text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          variants={fadeUp}
+          className="mt-16 pt-8 border-t border-blue-900/30 text-center"
         >
-          <p className="text-gray-500 text-sm">
+          <p className="text-slate-500 text-sm">
             © 2024{" "}
             <span className="text-white font-medium">{personal.name}</span>.
             Built with React & passion for Android development.

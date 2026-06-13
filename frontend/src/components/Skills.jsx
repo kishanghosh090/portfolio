@@ -14,13 +14,9 @@ import {
 } from "lucide-react";
 import { portfolioData } from "../data/kishandata";
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { fadeUp, staggerContainer, viewport } from "../lib/motion";
 
-const SkillCard = ({ skillGroup, index }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
+const SkillCard = ({ skillGroup }) => {
   const iconMap = {
     Languages: Code2,
     "Android Frameworks": Smartphone,
@@ -33,16 +29,10 @@ const SkillCard = ({ skillGroup, index }) => {
   const Icon = iconMap[skillGroup.category] || Code2;
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-      className="bg-[#0f0f0f] rounded-2xl p-5 hover:bg-[#1a1a1a] transition-colors duration-200 border border-gray-900 animate-card"
-    >
+    <motion.div variants={fadeUp} className="card-dark rounded-2xl p-5">
       <div className="flex items-center space-x-3 mb-4">
-        <div className="bg-white p-2 rounded-lg">
-          <Icon size={20} className="text-black" />
+        <div className="bg-blue-600/90 p-2 rounded-lg">
+          <Icon size={20} className="text-white" />
         </div>
         <h3 className="text-base font-semibold text-white">
           {skillGroup.category}
@@ -52,7 +42,7 @@ const SkillCard = ({ skillGroup, index }) => {
         {skillGroup.items.map((skill, skillIndex) => (
           <span
             key={skillIndex}
-            className="px-3 py-1.5 bg-[#1a1a1a] text-gray-300 rounded-lg text-xs font-medium hover:bg-[#252525] transition-colors duration-150 cursor-pointer border border-gray-800"
+            className="px-3 py-1.5 bg-blue-950/40 text-slate-300 rounded-lg text-xs font-medium hover:bg-blue-900/40 transition-colors duration-200 cursor-default border border-blue-900/30"
           >
             {skill}
           </span>
@@ -62,26 +52,17 @@ const SkillCard = ({ skillGroup, index }) => {
   );
 };
 
-const ProjectCard = ({ project, index }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
+const ProjectCard = ({ project }) => {
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-      className="bg-[#0f0f0f] rounded-2xl p-5 border border-gray-900 hover:border-gray-800 hover:bg-[#1a1a1a] transition-all duration-200 animate-card"
-    >
+    <motion.div variants={fadeUp} className="card-dark rounded-2xl p-5">
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center space-x-2">
-          <div className="bg-white p-1.5 rounded-lg">
-            <Smartphone size={16} className="text-black" />
+          <div className="bg-blue-600/90 p-1.5 rounded-lg">
+            <Smartphone size={16} className="text-white" />
           </div>
           <h4 className="text-lg font-bold text-white">{project.name}</h4>
         </div>
-        <div className="flex items-center space-x-1 bg-[#1a1a1a] px-2 py-1 rounded-lg border border-gray-800">
+        <div className="flex items-center space-x-1 bg-blue-950/40 px-2 py-1 rounded-lg border border-blue-900/30">
           {project.rating === "npm" ? (
             <>
               <Package size={12} className="text-white" />
@@ -98,7 +79,7 @@ const ProjectCard = ({ project, index }) => {
         </div>
       </div>
 
-      <p className="text-gray-400 mb-3 text-sm leading-relaxed">
+      <p className="text-slate-400 mb-3 text-sm leading-relaxed">
         {project.description}
       </p>
 
@@ -106,7 +87,7 @@ const ProjectCard = ({ project, index }) => {
         {project.tech.map((tech, techIndex) => (
           <span
             key={techIndex}
-            className="px-2 py-0.5 bg-[#1a1a1a] text-gray-400 rounded text-xs border border-gray-800"
+            className="px-2 py-0.5 bg-blue-950/40 text-slate-400 rounded text-xs border border-blue-900/30"
           >
             {tech}
           </span>
@@ -114,7 +95,7 @@ const ProjectCard = ({ project, index }) => {
       </div>
 
       <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-2 text-xs text-gray-500">
+        <div className="flex items-center space-x-2 text-xs text-slate-500">
           <Download size={14} />
           <span className="font-medium">{project.downloads}</span>
         </div>
@@ -128,7 +109,7 @@ const ProjectCard = ({ project, index }) => {
                 href={project.githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#1a1a1a] p-1.5 rounded-lg border border-gray-800 hover:bg-[#252525] transition-colors duration-150"
+                className="bg-blue-950/40 p-1.5 rounded-lg border border-blue-900/30 hover:bg-blue-900/40 transition-colors duration-200"
                 title="View on GitHub"
               >
                 <Github size={14} className="text-white" />
@@ -139,7 +120,7 @@ const ProjectCard = ({ project, index }) => {
                 href={project.npmLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#1a1a1a] p-1.5 rounded-lg border border-gray-800 hover:bg-[#252525] transition-colors duration-150"
+                className="bg-blue-950/40 p-1.5 rounded-lg border border-blue-900/30 hover:bg-blue-900/40 transition-colors duration-200"
                 title="View on NPM"
               >
                 <Package size={14} className="text-white" />
@@ -150,7 +131,7 @@ const ProjectCard = ({ project, index }) => {
                 href={project.documentationLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#1a1a1a] p-1.5 rounded-lg border border-gray-800 hover:bg-[#252525] transition-colors duration-150"
+                className="bg-blue-950/40 p-1.5 rounded-lg border border-blue-900/30 hover:bg-blue-900/40 transition-colors duration-200"
                 title="View Documentation"
               >
                 <BookOpen size={14} className="text-white" />
@@ -165,52 +146,53 @@ const ProjectCard = ({ project, index }) => {
 
 const Skills = () => {
   const { skills, projects } = portfolioData;
-  const headerRef = useRef(null);
-  const isHeaderInView = useInView(headerRef, { once: true });
 
   return (
-    <section id="skills" className="min-h-screen bg-black py-16 px-4">
+    <section id="skills" className="min-h-screen section-dark py-16 px-4">
       <div className="max-w-5xl mx-auto">
         <motion.div
-          ref={headerRef}
-          initial={{ opacity: 0, y: -10 }}
-          animate={
-            isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }
-          }
-          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          variants={fadeUp}
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
             Skills & Expertise
           </h2>
-          <p className="text-base text-gray-500 max-w-2xl mx-auto">
+          <p className="text-base text-slate-500 max-w-2xl mx-auto">
             Proficient in modern Android development technologies
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
-          {skills.map((skillGroup, index) => (
-            <SkillCard
-              key={skillGroup.id}
-              skillGroup={skillGroup}
-              index={index}
-            />
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16"
+        >
+          {skills.map((skillGroup) => (
+            <SkillCard key={skillGroup.id} skillGroup={skillGroup} />
           ))}
-        </div>
+        </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.3 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          variants={staggerContainer}
           className="mt-12"
         >
-          <h3 className="text-2xl font-bold text-white mb-6 text-center">
+          <motion.h3
+            variants={fadeUp}
+            className="text-2xl font-bold text-white mb-6 text-center"
+          >
             Featured Projects
-          </h3>
+          </motion.h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {projects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
+            {projects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
             ))}
           </div>
         </motion.div>
