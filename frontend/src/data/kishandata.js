@@ -147,66 +147,8 @@ export const portfolioData = {
       rating: "Featured Project",
       githubLink: "",
       liveLink: "",
-      documentationLink: "https://venthen-docs.vercel.app",
-    },
-    {
-      id: 2,
-      name: "Student Teacher Notice Portal",
-      description:
-        "A real-time communication platform for students and teachers supporting categorized notices, acknowledgements, and notifications.",
-      tech: [
-        "React",
-        "Node.js",
-        "Express",
-        "MongoDB",
-        "Socket.IO",
-      ],
-      features: [
-        "Categorized notices",
-        "Acknowledgements",
-        "Real-time notifications",
-      ],
-      rating: "",
-      githubLink: "https://github.com/kishanghosh090",
-    },
-    {
-      id: 3,
-      name: "Social Media Platform",
-      description:
-        "A full-stack social media application with authentication, posts, comments, likes, and user profiles.",
-      tech: [
-        "React",
-        "Node.js",
-        "MongoDB",
-        "JWT",
-      ],
-      features: [
-        "Authentication",
-        "Posts & comments",
-        "Likes",
-        "User profiles",
-      ],
-      rating: "",
-      githubLink: "https://github.com/kishanghosh090",
-    },
-    {
-      id: 4,
-      name: "Expense Tracker",
-      description:
-        "Personal finance tracking application with transaction analysis and budgeting features.",
-      tech: [
-        "React",
-        "Node.js",
-        "MongoDB",
-        "Express",
-      ],
-      features: [
-        "Transaction analysis",
-        "Budgeting",
-      ],
-      rating: "",
-      githubLink: "https://github.com/kishanghosh090",
-    },
+      
+    }
   ],
 
   education: [

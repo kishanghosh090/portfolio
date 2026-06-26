@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Home, Zap, GraduationCap, FolderGit2, Mail } from "lucide-react";
 import { scrollToSection } from "../hooks/useSmoothScroll";
 
 const Navbar = () => {
@@ -18,11 +19,11 @@ const Navbar = () => {
   );
 
   const mobileItems = [
-    { id: "home", label: "Home", icon: "\u{1F3E0}" },
-    { id: "skills", label: "Skills", icon: "\u26A1" },
-    { id: "education", label: "Education", icon: "\u{1F393}" },
-    { id: "projects", label: "Projects", icon: "\u{1F4C1}" },
-    { id: "contact", label: "Contact", icon: "\u2709" },
+    { id: "home", label: "Home", icon: Home },
+    { id: "skills", label: "Skills", icon: Zap },
+    { id: "education", label: "Education", icon: GraduationCap },
+    { id: "projects", label: "Projects", icon: FolderGit2 },
+    { id: "contact", label: "Contact", icon: Mail },
   ];
 
   useEffect(() => {
@@ -166,13 +167,16 @@ const Navbar = () => {
               >
                 <span
                   style={{
-                    fontSize: "16px",
-                    lineHeight: 1,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "16px",
+                    height: "16px",
                     filter: isActive ? "none" : "grayscale(1) contrast(0.5)",
                     transition: "filter 0.2s ease",
                   }}
                 >
-                  {item.icon}
+                  <item.icon size={16} />
                 </span>
                 <span
                   style={{
