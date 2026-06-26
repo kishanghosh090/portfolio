@@ -1,11 +1,10 @@
 import React from 'react';
-import './App.css';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
 import Education from './components/Education';
 import Contact from './components/Contact';
-import CursorWater from './components/CursorWater';
+import CustomCursor from './components/CustomCursor';
 import { Toaster } from './components/ui/toaster';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
 
@@ -13,16 +12,24 @@ function App() {
   useSmoothScroll();
 
   return (
-    <div className="App">
-      <div className="ambient-glow" aria-hidden="true" />
-      <CursorWater />
+    <div className="w-full overflow-x-hidden bg-black relative min-h-screen">
+      {/* Background Layers */}
+      <div className="vignette" aria-hidden="true" />
+      <div className="noise-overlay" aria-hidden="true" />
+
+      {/* Custom Cursor (desktop only) */}
+      <CustomCursor />
+
       <div className="relative z-10">
         <Navbar />
-        <Hero />
-        <Skills />
-        <Education />
-        <Contact />
+        <main>
+          <Hero />
+          <Skills />
+          <Education />
+          <Contact />
+        </main>
       </div>
+      
       <Toaster />
     </div>
   );
