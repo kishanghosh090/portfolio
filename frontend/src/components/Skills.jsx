@@ -172,6 +172,7 @@ const Skills = () => {
         </motion.div>
 
         <motion.div
+          id="projects"
           initial="hidden"
           whileInView="visible"
           viewport={viewport}

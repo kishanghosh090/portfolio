@@ -4,7 +4,6 @@ import Hero from './components/Hero';
 import Skills from './components/Skills';
 import Education from './components/Education';
 import Contact from './components/Contact';
-import CustomCursor from './components/CustomCursor';
 import { Toaster } from './components/ui/toaster';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
 
@@ -13,9 +12,6 @@ function App() {
 
   return (
     <div className="w-full overflow-x-hidden bg-black relative min-h-screen">
-      {/* Custom Cursor — mounted at top level, above everything */}
-      <CustomCursor />
-
       {/* Background Layers */}
       <div className="vignette" aria-hidden="true" />
       <div className="noise-overlay" aria-hidden="true" />
