@@ -9,7 +9,6 @@ import {
   Github,
   ExternalLink,
   BookOpen,
-  Package,
   X,
   ChevronRight,
 } from "lucide-react";

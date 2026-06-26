@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   GraduationCap,
-  Award,
   Briefcase,
   Calendar,
   CheckCircle,
@@ -9,7 +8,7 @@ import {
 } from "lucide-react";
 import { portfolioData } from "../data/kishandata";
 import { motion } from "framer-motion";
-import { fadeUp, staggerContainer, viewport, staggerSlow } from "../lib/motion";
+import { fadeUp, staggerContainer, viewport } from "../lib/motion";
 import { Sheet, SheetContent, SheetClose } from "./ui/sheet";
 
 /* ===== Detail Bottom Sheet for Education/Experience ===== */
