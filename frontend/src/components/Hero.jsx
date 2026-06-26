@@ -98,7 +98,7 @@ const Hero = () => {
         {/* Role Tag */}
         <motion.div variants={fadeUpItem} className="mt-6 mb-4">
           <span className="inline-block text-xs text-white/40 font-medium tracking-[0.2em] uppercase">
-            Mobile & Backend Developer
+            {personal.title}
           </span>
         </motion.div>
 
