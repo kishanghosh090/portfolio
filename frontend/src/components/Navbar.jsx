@@ -92,10 +92,10 @@ const Navbar = () => {
       {/* Mobile */}
       <div className="md:hidden w-full flex justify-center">
         <div
-          className={`flex items-center justify-between px-4 py-3 rounded-full backdrop-blur-2xl border transition-all duration-500 max-w-[90%] w-full ${
+          className={`flex items-center justify-between px-4 py-3 rounded-full border transition-all duration-500 max-w-[90%] w-full ${
             isScrolled
-              ? "bg-black/80 border-white/[0.1] shadow-xl shadow-black/50"
-              : "bg-black/50 border-white/[0.06]"
+              ? "bg-black/90 border-white/[0.1] shadow-xl shadow-black/50"
+              : "bg-black/70 border-white/[0.06]"
           }`}
         >
           <span className="text-sm font-semibold text-white tracking-wider ml-1">

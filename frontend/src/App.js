@@ -13,12 +13,12 @@ function App() {
 
   return (
     <div className="w-full overflow-x-hidden bg-black relative min-h-screen">
+      {/* Custom Cursor — mounted at top level, above everything */}
+      <CustomCursor />
+
       {/* Background Layers */}
       <div className="vignette" aria-hidden="true" />
       <div className="noise-overlay" aria-hidden="true" />
-
-      {/* Custom Cursor (desktop only) */}
-      <CustomCursor />
 
       <div className="relative z-10">
         <Navbar />
@@ -29,7 +29,7 @@ function App() {
           <Contact />
         </main>
       </div>
-      
+
       <Toaster />
     </div>
   );

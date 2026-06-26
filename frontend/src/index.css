@@ -11,6 +11,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 body {
@@ -21,6 +23,8 @@ body {
   background-color: #000000;
   color: #e2e8f0;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 @layer base {
@@ -107,16 +111,40 @@ body {
   );
 }
 
+/* ====== GPU Acceleration ====== */
+.gpu {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ====== Mobile: disable heavy effects ====== */
+@media (max-width: 767px) {
+  .noise-overlay {
+    display: none;
+  }
+  .vignette {
+    display: none;
+  }
+  html, body {
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ====== Card ====== */
 .card-premium {
   background: rgba(255, 255, 255, 0.015);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .card-premium:hover {
   border-color: rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.025);
+  transform: translateZ(0) translateY(-2px);
 }
 
 /* ====== Section ====== */

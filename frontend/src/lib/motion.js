@@ -72,6 +72,6 @@ export const slideRight = {
 
 export const viewport = {
   once: true,
-  amount: 0.12,
+  amount: 0.2,
   margin: "0px 0px -48px 0px",
 };
