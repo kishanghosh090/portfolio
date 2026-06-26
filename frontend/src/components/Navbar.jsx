@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { scrollToSection } from "../hooks/useSmoothScroll";
 
@@ -6,13 +6,16 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const navItems = [
-    { id: "home", label: "Home", num: "01" },
-    { id: "skills", label: "Skills", num: "02" },
-    { id: "education", label: "Education", num: "03" },
-    { id: "projects", label: "Projects", num: "04" },
-    { id: "contact", label: "Contact", num: "05" },
-  ];
+  const navItems = useMemo(
+    () => [
+      { id: "home", label: "Home", num: "01" },
+      { id: "skills", label: "Skills", num: "02" },
+      { id: "education", label: "Education", num: "03" },
+      { id: "projects", label: "Projects", num: "04" },
+      { id: "contact", label: "Contact", num: "05" },
+    ],
+    []
+  );
 
   const mobileItems = [
     { id: "home", label: "Home", icon: "\u{1F3E0}" },
@@ -45,7 +48,7 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navItems]);
 
   const handleNavClick = (sectionId) => {
     scrollToSection(sectionId);
