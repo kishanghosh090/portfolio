@@ -52,7 +52,7 @@ const Hero = () => {
     {
       icon: Download,
       label: "Resume",
-      href: "/KISHAN RANA GHOSH-3.pdf",
+      href: "/kishanranaghoshCV.pdf",
       download: "Kishan_Rana_Ghosh_Resume.pdf",
     },
   ];
