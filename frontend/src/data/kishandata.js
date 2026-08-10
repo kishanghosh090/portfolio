@@ -172,6 +172,29 @@ export const portfolioData = {
       githubLink: "https://github.com/kishanghosh090/dropbox",
       liveLink: "https://space.venthen.dev",
     },
+    {
+      id: 3,
+      name: "Media Processing Pipeline",
+      featured: true,
+      description:
+        "A reusable media processing pipeline for handling video uploads, transcoding, resolution management, HLS generation, and automated storage cleanup.",
+      features: [
+        "Video upload processing",
+        "Video transcoding",
+        "Custom resolution management",
+        "HLS video generation",
+        "Local storage management",
+        "Automated storage cleanup",
+        "Cloudinary integration",
+        "AWS S3 integration",
+        "Reusable NPM package",
+      ],
+      tech: ["Node.js", "TypeScript", "FFmpeg", "Cloudinary", "AWS S3", "NPM"],
+      status: "Published",
+      rating: "Featured Project",
+      githubLink: "https://github.com/kishanghosh090/Media-Pipeline-sdk",
+      liveLink: "https://www.npmjs.com/package/mediapipeline-sdk",
+    },
   ],
 
   education: [
