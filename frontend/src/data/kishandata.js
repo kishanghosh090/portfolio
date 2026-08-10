@@ -67,13 +67,7 @@ export const portfolioData = {
     {
       id: 4,
       category: "Databases",
-      items: [
-        "MongoDB",
-        "PostgreSQL",
-        "MySQL",
-        "SQLite",
-        "Room Database",
-      ],
+      items: ["MongoDB", "PostgreSQL", "MySQL", "SQLite", "Room Database"],
     },
     {
       id: 5,
@@ -147,8 +141,37 @@ export const portfolioData = {
       rating: "Featured Project",
       githubLink: "",
       liveLink: "",
-      
-    }
+    },
+    {
+      id: 2,
+      name: "Venthen Space",
+      featured: true,
+      description:
+        "A modern cloud storage and file management platform inspired by Dropbox, built to provide fast, organized, and reliable file storage with a clean web experience.",
+      features: [
+        "Cloud file storage",
+        "File and folder management",
+        "Drag-and-drop uploads",
+        "Image and media previews",
+        "File sharing",
+        "Search and filtering",
+        "Responsive web interface",
+        "Optimized media delivery",
+        "Modern dashboard experience",
+      ],
+      tech: [
+        "Next.js",
+        "TypeScript",
+        "React",
+        "ImageKit",
+        "Hero UI",
+        "Tailwind CSS",
+      ],
+      status: "Currently Building",
+      rating: "Featured Project",
+      githubLink: "https://github.com/kishanghosh090/dropbox",
+      liveLink: "https://space.venthen.dev",
+    },
   ],
 
   education: [
@@ -170,8 +193,7 @@ export const portfolioData = {
       degree: "Bachelor of Science in Computer Science",
       institution: "Gour Mahavidyalaya",
       year: "2024 – Present",
-      description:
-        "Traditional undergraduate program in Computer Science.",
+      description: "Traditional undergraduate program in Computer Science.",
       highlights: [
         "Computer Science fundamentals",
         "Mathematics and algorithms",
