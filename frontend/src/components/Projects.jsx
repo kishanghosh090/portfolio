@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Github,
-  ExternalLink,
-  BookOpen,
-  X,
-  ChevronRight,
-} from "lucide-react";
+import { Github, ExternalLink, BookOpen, X, ChevronRight } from "lucide-react";
 import { portfolioData } from "../data/kishandata";
 import { fadeUp, staggerContainer, viewport, staggerSlow } from "../lib/motion";
 import { Sheet, SheetContent, SheetClose } from "./ui/sheet";
@@ -16,7 +10,12 @@ const ProjectSheet = ({ project, open, onClose }) => {
   if (!project) return null;
 
   return (
-    <Sheet open={open} onOpenChange={(v) => { if (!v) onClose(); }}>
+    <Sheet
+      open={open}
+      onOpenChange={(v) => {
+        if (!v) onClose();
+      }}
+    >
       <SheetContent
         side="bottom"
         className="bg-black/95 border-t border-white/[0.08] text-white overflow-y-auto"
@@ -28,10 +27,6 @@ const ProjectSheet = ({ project, open, onClose }) => {
           fontFamily: "Inter, system-ui, sans-serif",
         }}
       >
-        <SheetClose className="absolute right-6 top-6 w-8 h-8 rounded-full bg-white/[0.06] flex items-center justify-center hover:bg-white/[0.1] transition-all z-10 border border-white/[0.08]">
-          <X size={14} className="text-white/50" />
-        </SheetClose>
-
         <div className="max-w-3xl mx-auto pt-4">
           {/* Tag */}
           {project.status && (
@@ -60,7 +55,10 @@ const ProjectSheet = ({ project, open, onClose }) => {
               </h4>
               <div className="flex flex-wrap gap-x-6 gap-y-2">
                 {project.features.map((f, i) => (
-                  <span key={i} className="text-white/30 text-sm flex items-center gap-1.5">
+                  <span
+                    key={i}
+                    className="text-white/30 text-sm flex items-center gap-1.5"
+                  >
                     <span className="w-1 h-1 rounded-full bg-white/20 flex-shrink-0" />
                     {f}
                   </span>
@@ -91,17 +89,32 @@ const ProjectSheet = ({ project, open, onClose }) => {
           {/* Links */}
           <div className="flex flex-wrap gap-3 pt-2">
             {project.githubLink && (
-              <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/[0.1] bg-white/[0.03] text-white/60 text-sm font-medium hover:bg-white/[0.06] hover:text-white transition-all">
+              <a
+                href={project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/[0.1] bg-white/[0.03] text-white/60 text-sm font-medium hover:bg-white/[0.06] hover:text-white transition-all"
+              >
                 <Github size={15} /> GitHub
               </a>
             )}
             {project.documentationLink && (
-              <a href={project.documentationLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/[0.1] bg-white/[0.03] text-white/60 text-sm font-medium hover:bg-white/[0.06] hover:text-white transition-all">
+              <a
+                href={project.documentationLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/[0.1] bg-white/[0.03] text-white/60 text-sm font-medium hover:bg-white/[0.06] hover:text-white transition-all"
+              >
                 <BookOpen size={15} /> Docs
               </a>
             )}
             {project.liveLink && (
-              <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/[0.1] bg-white/[0.03] text-white/60 text-sm font-medium hover:bg-white/[0.06] hover:text-white transition-all">
+              <a
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/[0.1] bg-white/[0.03] text-white/60 text-sm font-medium hover:bg-white/[0.06] hover:text-white transition-all"
+              >
                 <ExternalLink size={15} /> Live Demo
               </a>
             )}
@@ -138,7 +151,10 @@ const FeaturedProjectCard = ({ project, onSelect }) => {
         </div>
         <div className="flex-shrink-0 mt-2">
           <div className="w-10 h-10 rounded-full border border-white/[0.1] flex items-center justify-center group-hover:border-white/30 group-hover:bg-white/[0.04] transition-all duration-300">
-            <ChevronRight size={18} className="text-white/40 group-hover:text-white/70 transition-colors" />
+            <ChevronRight
+              size={18}
+              className="text-white/40 group-hover:text-white/70 transition-colors"
+            />
           </div>
         </div>
       </div>
@@ -178,7 +194,10 @@ const ProjectCard = ({ project, index, onSelect }) => {
         {/* Arrow */}
         <div className="flex-shrink-0">
           <div className="w-8 h-8 rounded-full border border-white/[0.08] flex items-center justify-center group-hover:border-white/30 group-hover:bg-white/[0.04] transition-all duration-300">
-            <ChevronRight size={14} className="text-white/30 group-hover:text-white/60 transition-colors" />
+            <ChevronRight
+              size={14}
+              className="text-white/30 group-hover:text-white/60 transition-colors"
+            />
           </div>
         </div>
       </div>
@@ -191,7 +210,7 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [sheetOpen, setSheetOpen] = useState(false);
 
-  const featuredProject = projects.find((p) => p.featured);
+  const featuredProjects = projects.filter((p) => p.featured);
   const otherProjects = projects.filter((p) => !p.featured);
 
   const handleSelectProject = (project) => {
@@ -224,14 +243,15 @@ const Projects = () => {
           </motion.div>
 
           {/* Featured */}
-          {featuredProject && (
-            <motion.div variants={fadeUp} className="mb-5">
+          <motion.div variants={staggerContainer} className="space-y-3 mb-5">
+            {featuredProjects.map((project, i) => (
               <FeaturedProjectCard
-                project={featuredProject}
+                key={project.id}
+                project={project}
                 onSelect={handleSelectProject}
               />
-            </motion.div>
-          )}
+            ))}
+          </motion.div>
 
           {/* Other Projects */}
           <motion.div variants={staggerContainer} className="space-y-3">
