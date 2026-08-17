@@ -193,7 +193,7 @@ export const portfolioData = {
       status: "Published",
       rating: "Featured Project",
       githubLink: "https://github.com/kishanghosh090/Media-Pipeline-sdk",
-      liveLink: "https://www.npmjs.com/package/mediapipeline-sdk",
+      liveLink: "https://mediasdk.venthen.dev",
     },
   ],
 
