@@ -34,9 +34,7 @@ const DetailSheet = ({ item, type, open, onClose }) => {
           fontFamily: "Inter, system-ui, sans-serif",
         }}
       >
-        <SheetClose className="absolute right-6 top-6 w-8 h-8 rounded-full bg-white/[0.06] flex items-center justify-center hover:bg-white/[0.1] transition-all z-10 border border-white/[0.08]">
-          <X size={14} className="text-white/50" />
-        </SheetClose>
+  
 
         <div className="max-w-3xl mx-auto pt-4">
           {/* Type badge */}

@@ -113,35 +113,51 @@ export const portfolioData = {
       id: 1,
       name: "Venthen",
       featured: true,
+
       description:
-        "A multi-tenant campus communication and management platform designed for colleges and universities. Built with a microservice architecture to handle communication, attendance, academic workflows, and role-based access control.",
+        "A scalable multi-tenant campus management platform built for colleges and universities, providing a unified ecosystem for students, faculty, and administrators. Venthen combines academic management, attendance, communication, notifications, authentication, and institutional workflows with a production-oriented backend and dedicated mobile applications.",
+
       features: [
-        "Multi-tenant architecture",
-        "RBAC authorization",
-        "Attendance system",
-        "Campus communication",
-        "Real-time notifications",
-        "Offline-first mobile experience",
-        "Microservices architecture",
-        "Event-driven design",
+        "Multi-tenant SaaS architecture",
+        "Hierarchical institution management",
+        "Role-based access control (RBAC)",
+        "Student, faculty, and administrator workflows",
+        "Academic and semester management",
+        "Attendance management",
+        "Campus-wide announcements",
+        "Real-time messaging and communication",
+        "Push notification infrastructure",
+        "Multi-device authentication and session management",
+        "Background job processing",
+        "Redis-based caching and presence",
+        "Offline-capable mobile experience",
+        "Media upload and processing pipeline",
+        "Event-driven background workflows",
+        "Containerized production infrastructure"
       ],
+
       tech: [
-        "TypeScript",
-        "Node.js",
-        "Express",
+        "Go",
         "PostgreSQL",
-        "Kafka",
-        "gRPC",
-        "Turborepo",
-        "React Native",
-        "Flutter",
+        "Redis",
+        "REST API",
+        "JWT",
         "Docker",
+        "Docker Compose",
+        "Nginx",
+        "Firebase Cloud Messaging",
+        "Flutter",
+        "Kotlin",
+        "Jetpack Compose"
       ],
+
       status: "Currently Building",
       rating: "Featured Project",
+
       githubLink: "",
-      liveLink: "",
-    },
+      liveLink: ""
+    }
+    ,
     {
       id: 2,
       name: "Venthen Space",
